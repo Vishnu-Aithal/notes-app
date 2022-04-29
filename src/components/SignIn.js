@@ -4,9 +4,9 @@ import { OpenEyeIcon, ClosedEyeIcon, ArrowRightIcon } from "./Icons";
 const InputField = ({ type, label, name }) => {
     const [showPassword, setShowPassword] = useState(false);
     return (
-        <div className="relative mt-8">
+        <div className="relative mt-8 animate-fade-in">
             <input
-                className="border-b-2 p-1 outline-none bg-transparent focus:border-amber-500 placeholder-transparent peer text-zinc-600 dark:text-slate-300 animate-fade-in"
+                className="border-b-2 p-1 outline-none bg-transparent focus:border-amber-500 placeholder-transparent peer text-zinc-600 dark:text-slate-300"
                 type={
                     type !== "password"
                         ? type
