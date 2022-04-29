@@ -7,11 +7,11 @@ function App() {
     const { darkTheme } = useTheme();
     return (
         <div
-            className={`h-screen w-screen flex flex-col transition-colors duration-300 animate-fade-in ${
+            className={`h-screen w-screen flex flex-col transition-colors duration-300  ${
                 darkTheme ? "dark" : ""
             }`}>
             <Header />
-            <div className="flex h-full w-full overflow-auto">
+            <div className="flex h-full w-full overflow-auto dark:bg-zinc-800">
                 <SideBar />
                 <Outlet />
             </div>

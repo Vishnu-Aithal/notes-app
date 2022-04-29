@@ -6,7 +6,7 @@ const InputField = ({ type, label, name }) => {
     return (
         <div className="relative mt-8">
             <input
-                className="border-b-2 p-1 outline-none bg-transparent focus:border-amber-500 placeholder-transparent peer text-zinc-600 dark:text-slate-300"
+                className="border-b-2 p-1 outline-none bg-transparent focus:border-amber-500 placeholder-transparent peer text-zinc-600 dark:text-slate-300 animate-fade-in"
                 type={
                     type !== "password"
                         ? type

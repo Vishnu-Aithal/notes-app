@@ -6,7 +6,7 @@ export const SignInPage = () => {
     const { darkTheme, setDarkTheme } = useTheme();
     return (
         <div className={darkTheme ? "dark" : ""}>
-            <div className="h-screen w-screen flex items-center justify-center relative bg-slate-50 dark:bg-zinc-700 animate-fade-in">
+            <div className="h-screen w-screen flex items-center justify-center relative bg-slate-50 dark:bg-zinc-700">
                 <ThemeSwitcher
                     className={
                         "hover:cursor-pointer rounded-md group p-3 hover:scale-110 transition-all absolute top-5 right-5"
