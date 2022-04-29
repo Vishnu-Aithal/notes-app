@@ -4,7 +4,7 @@ import { OpenEyeIcon, ClosedEyeIcon, ArrowRightIcon } from "./Icons";
 const InputField = ({ type, label, name }) => {
     const [showPassword, setShowPassword] = useState(false);
     return (
-        <div className="relative mt-8 animate-fade-in">
+        <div className="relative mt-8">
             <input
                 className="border-b-2 p-1 outline-none bg-transparent focus:border-amber-500 placeholder-transparent peer text-zinc-600 dark:text-slate-300"
                 type={
@@ -38,7 +38,7 @@ export const SignIn = ({}) => {
     return (
         <form
             onSubmit={(e) => e.preventDefault()}
-            className="border-2 border-amber-500 shadow-md p-12 pb-6 rounded-3xl flex flex-col">
+            className="border-2 border-amber-500 shadow-md p-12 pb-6 rounded-3xl flex flex-col animate-fade-in">
             <InputField type="text" label="Email" />
             <InputField type="password" label="Password" />
             <button className="px-4 py-2 bg-amber-300 rounded-md mt-6 text-zinc-700 font-bold hover:scale-105">
