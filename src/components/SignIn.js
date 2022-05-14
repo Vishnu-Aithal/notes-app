@@ -38,7 +38,7 @@ export const SignIn = ({}) => {
     return (
         <form
             onSubmit={(e) => e.preventDefault()}
-            className="border-2 border-amber-500 shadow-md p-12 pb-6 rounded-3xl flex flex-col">
+            className="border-2 border-amber-500 shadow-md p-12 pb-6 rounded-3xl flex flex-col animate-fade-in">
             <InputField type="text" label="Email" />
             <InputField type="password" label="Password" />
             <button className="px-4 py-2 bg-amber-300 rounded-md mt-6 text-zinc-700 font-bold hover:scale-105">
