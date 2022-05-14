@@ -8,7 +8,13 @@ export const Filter = ({ showFilter, setShowFilter }) => {
         <div
             ref={ref}
             tabIndex="-1"
-            onBlur={() => setShowFilter(false)}
+            onFocus={() => clearTimeout(ref.current.timeOutId)}
+            onBlur={() =>
+                (ref.current.timeOutId = setTimeout(
+                    () => setShowFilter(false),
+                    0
+                ))
+            }
             className={`${
                 showFilter ? "opacity-100" : "scale-0 opacity-0"
             } origin-top-right flex flex-col border-1 border-gray-200 dark:border-zinc-700 rounded-md sm:w-96 w-72 text-left text-zinc-700 dark:text-zinc-300 absolute top-100 left-1/2 -translate-x-1/2 translate-y-2 z-10 bg-white dark:bg-zinc-800 shadow-md dark:shadow-zinc-700`}>
