@@ -29,12 +29,12 @@ export const HomePage = () => {
                         Manage your daily tasks and workflow in a modern way and
                         boost your efficiency without any efforts
                     </h3>
-
                     <Link
                         to={"/sign-up"}
-                        className="bg-amber-500 hover:bg-zinc-600 hover:text-slate-100 hover:scale-110 text-lg w-fit py-2 px-6 rounded-md font-bold mt-auto">
+                        className="bg-amber-500 hover:bg-zinc-600 hover:text-slate-100 dark:text-slate-100 hover:scale-110 text-lg w-fit py-2 px-6 rounded-md font-bold mt-auto">
                         Join Now
                     </Link>
+
                     <Link
                         to={"/sign-in"}
                         className="text-zinc-500 mt-2 font-semibold text-lg group w-fit">
