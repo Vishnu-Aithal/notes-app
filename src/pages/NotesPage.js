@@ -3,9 +3,12 @@ import { Filter } from "components/Filter";
 import { FilterIcon } from "components/Icons";
 import { Note } from "components/Note";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export const NotesPage = ({}) => {
     const [showFilter, setShowFilter] = useState(false);
+    const dispatch = useDispatch();
+    const notes = useSelector((state) => state.allNotes.notes);
     return (
         <ContentLayout>
             <div className="w-full text-center relative">
@@ -23,12 +26,9 @@ export const NotesPage = ({}) => {
                 </button>
                 <Filter {...{ showFilter, setShowFilter }} />
             </div>
-            <Note />
-            <Note />
-            <Note />
-            <Note />
-            <Note />
-            <Note />
+            {notes.map((note) => (
+                <Note key={note._id} note={note} />
+            ))}
         </ContentLayout>
     );
 };
