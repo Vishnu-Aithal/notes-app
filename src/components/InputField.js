@@ -19,7 +19,7 @@ export const InputField = ({ type, label, name, value, onChange }) => {
                 placeholder={label}
             />
             <label className="absolute top-1 left-2 text-xs font-semibold text-zinc-800 dark:text-slate-100 -translate-y-6  -translate-x-1 peer-placeholder-shown:translate-y-0 transition-all pointer-events-none peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-placeholder-shown:font-normal peer-placeholder-shown:translate-x-0">
-                {label}{" "}
+                {label}
             </label>
             {type === "password" && (
                 <button

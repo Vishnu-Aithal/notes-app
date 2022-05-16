@@ -1,5 +1,5 @@
 export { NotesPage } from "./NotesPage";
-export { LabelsPage } from "./LabelsPage";
+export { TagsPage } from "./TagsPage";
 export { TrashPage } from "./TrashPage";
 export { ArchivesPage } from "./ArchivesPage";
 export { ProfilePage } from "./ProfilePage";

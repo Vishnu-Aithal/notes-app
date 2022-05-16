@@ -4,7 +4,7 @@ import {
     NotesPage,
     ProfilePage,
     ArchivesPage,
-    LabelsPage,
+    TagsPage,
     TrashPage,
     HomePage,
     AuthPage,
@@ -35,8 +35,8 @@ export const ConditionalRouter = () => {
                     <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
                         <Route path="notes" element={<NotesPage />} />
                         <Route path="archives" element={<ArchivesPage />} />
-                        <Route path="labels" element={<LabelsPage />} />
-                        <Route path="labels/:label" element={<LabelsPage />} />
+                        <Route path="tags" element={<TagsPage />} />
+                        <Route path="tags/:tag" element={<TagsPage />} />
                         <Route path="trash" element={<TrashPage />} />
                         <Route path="profile" element={<ProfilePage />} />
                     </Route>

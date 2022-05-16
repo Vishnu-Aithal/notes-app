@@ -5,7 +5,7 @@ import {
     ArchiveIcon,
     UserIcon,
     TrashIcon,
-    LabelIcon,
+    TagIcon,
 } from "components/Icons.js";
 
 const SideBarNavLink = ({ to, Icon, name }) => {
@@ -31,23 +31,23 @@ const SideBarNavLink = ({ to, Icon, name }) => {
     );
 };
 
-const LabelSubMenu = ({ labels }) => {
+const TagSubMenu = ({ tags }) => {
     const [subMenuCollapse, setSubMenuCollapse] = useState(true);
     return (
         <>
             <div onClick={() => setSubMenuCollapse((state) => !state)}>
-                <SideBarNavLink to={"/labels"} Icon={LabelIcon} name="Labels" />
+                <SideBarNavLink to={"/tags"} Icon={TagIcon} name="Tags" />
             </div>
             <ul
                 className={`sm:ml-2 ml-1 overflow-hidden transition-all text-xs ${
                     subMenuCollapse ? "h-0" : "h-0 sm:h-auto"
                 }`}>
-                {labels.map((label, index) => (
+                {tags.map((tag, index) => (
                     <li key={index}>
                         <SideBarNavLink
-                            to={"/labels/" + label.id}
-                            Icon={LabelIcon}
-                            name={label.name}
+                            to={"/tags/" + tag.id}
+                            Icon={TagIcon}
+                            name={tag.name}
                         />
                     </li>
                 ))}
@@ -77,12 +77,12 @@ export const SideBar = () => {
                 </li>
 
                 <li>
-                    <LabelSubMenu
-                        labels={[
-                            { id: 0, name: "label1" },
-                            { id: 1, name: "label2" },
-                            { id: 2, name: "label3" },
-                            { id: 3, name: "labe4" },
+                    <TagSubMenu
+                        tags={[
+                            { id: 0, name: "tag1" },
+                            { id: 1, name: "tag2" },
+                            { id: 2, name: "tag3" },
+                            { id: 3, name: "tag4" },
                         ]}
                     />
                 </li>

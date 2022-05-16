@@ -51,7 +51,7 @@ export const Filter = ({ showFilter, setShowFilter }) => {
                 </div>
             </div>
             <div className="p-4 border-b-1 border-gray-200 dark:border-zinc-700">
-                <p className="font-bold mb-2">Filter By Label</p>
+                <p className="font-bold mb-2">Filter By Tags</p>
                 <div className="ml-2 text-sm font-medium flex flex-col space-y-2">
                     <label htmlFor="work">
                         <input
