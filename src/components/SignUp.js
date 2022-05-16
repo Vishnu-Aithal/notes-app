@@ -1,15 +1,10 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { ArrowRightIcon } from "./Icons";
-import { logInAction } from "store/authSlice";
+import { signUpAction } from "store/authSlice";
 import { InputField } from "./InputField";
-
-export const SignIn = () => {
-    const demoSignIn = {
-        email: "adarshbalika@gmail.com",
-        password: "adarshBalika123",
-    };
+export const SignUp = () => {
     const [formFields, setFormFields] = useState({
+        name: "",
         email: "",
         password: "",
     });
@@ -18,9 +13,20 @@ export const SignIn = () => {
         <form
             onSubmit={(e) => {
                 e.preventDefault();
-                dispatch(logInAction(formFields));
+                dispatch(signUpAction(formFields));
             }}
             className="border-2 border-amber-500 shadow-md p-12 pb-6 rounded-3xl flex flex-col animate-fade-in">
+            <InputField
+                type="text"
+                label="Name"
+                value={formFields.name}
+                onChange={(e) =>
+                    setFormFields((formFields) => ({
+                        ...formFields,
+                        name: e.target.value,
+                    }))
+                }
+            />
             <InputField
                 type="text"
                 label="Email"
@@ -45,19 +51,8 @@ export const SignIn = () => {
             />
             <button
                 type="submit"
-                disabled={!(formFields.password && formFields.email)}
-                className="px-4 py-2 bg-amber-300 rounded-md mt-6 text-zinc-700 font-bold hover:scale-105 disabled:pointer-events-none disabled:bg-gray-400">
-                Sign In
-            </button>
-
-            <button
-                type="button"
-                onClick={() => dispatch(logInAction(demoSignIn))}
-                className="ml-auto text-sm mt-10 flex items-center p-1 text-zinc-800 dark:text-slate-300 group hover:text-amber-500 dark:hover:text-amber-300">
-                <p>Sign In Demo</p>
-                <ArrowRightIcon
-                    className={"h-6 w-6 pt-1 group-hover:translate-x-2"}
-                />
+                className="px-4 py-2 bg-amber-300 rounded-md mt-6 text-zinc-700 font-bold hover:scale-105">
+                Sign Up
             </button>
         </form>
     );

@@ -1,9 +1,15 @@
 import { ThemeSwitcher } from "components/ThemeSwitcher";
 import { SignIn } from "components/SignIn";
-import { useTheme } from "contexts/ThemeContext";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleDarkTheme } from "store/themeSlice";
+import { useLocation } from "react-router-dom";
+import { SignUp } from "components/SignUp";
 
-export const SignInPage = () => {
-    const { darkTheme, setDarkTheme } = useTheme();
+export const AuthPage = () => {
+    const darkTheme = useSelector((state) => state.theme.darkTheme);
+    const dispatch = useDispatch();
+    const { pathname } = useLocation();
+    const setDarkTheme = () => dispatch(toggleDarkTheme());
     return (
         <div className={darkTheme ? "dark" : ""}>
             <div className="h-screen w-screen flex items-center justify-center relative bg-slate-50 dark:bg-zinc-700">
@@ -13,7 +19,7 @@ export const SignInPage = () => {
                     }
                     setDarkTheme={setDarkTheme}
                 />
-                <SignIn />
+                {pathname === "/sign-in" ? <SignIn /> : <SignUp />}
             </div>
         </div>
     );
