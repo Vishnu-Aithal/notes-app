@@ -2,7 +2,6 @@ import { Outlet } from "react-router-dom";
 import { Header } from "./components/Header";
 import { SideBar } from "./components/SideBar";
 import { useSelector } from "react-redux";
-import { ToastContainer } from "react-toastify";
 
 function App() {
     const darkTheme = useSelector((state) => state.theme.darkTheme);
