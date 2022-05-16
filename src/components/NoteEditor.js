@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, useMemo } from "react";
-import { ColorSwatchIcon, PlusIcon } from "./Icons";
+import { PlusIcon } from "./Icons";
 import JoditEditor from "jodit-react";
 import { useDispatch, useSelector } from "react-redux";
 import {
