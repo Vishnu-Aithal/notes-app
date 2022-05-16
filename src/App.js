@@ -1,10 +1,11 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "./components/Header";
 import { SideBar } from "./components/SideBar";
-import { useTheme } from "contexts/ThemeContext";
+import { useSelector } from "react-redux";
+import { ToastContainer } from "react-toastify";
 
 function App() {
-    const { darkTheme } = useTheme();
+    const darkTheme = useSelector((state) => state.theme.darkTheme);
     return (
         <div
             className={`h-screen w-screen flex flex-col transition-colors duration-300  ${

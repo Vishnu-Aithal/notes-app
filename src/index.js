@@ -4,7 +4,10 @@ import "./index.css";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
 import { ConditionalRouter } from "./pages/Routes";
-import { ThemeProvider } from "contexts/ThemeContext";
+import { Provider as StoreProvider } from "react-redux";
+import { store } from "store/store";
+
+// TODO move to redux toolkit
 
 // Call make Server
 makeServer();
@@ -13,9 +16,9 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 root.render(
     <BrowserRouter>
-        <ThemeProvider>
+        <StoreProvider store={store}>
             <ConditionalRouter />
-        </ThemeProvider>
+        </StoreProvider>
     </BrowserRouter>
 );
 

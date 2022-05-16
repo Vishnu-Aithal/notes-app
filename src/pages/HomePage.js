@@ -1,10 +1,12 @@
 import { HeroImage } from "components/HeroImage";
-import { MoonIcon } from "components/Icons";
 import { ThemeSwitcher } from "components/ThemeSwitcher";
-import { useTheme } from "contexts/ThemeContext";
+import { useDispatch, useSelector } from "react-redux";
+import { toggleDarkTheme } from "store/themeSlice";
 import { Link } from "react-router-dom";
 export const HomePage = () => {
-    const { darkTheme, setDarkTheme } = useTheme();
+    const darkTheme = useSelector((state) => state.theme.darkTheme);
+    const dispatch = useDispatch();
+    const setDarkTheme = () => dispatch(toggleDarkTheme());
     return (
         <div className={darkTheme ? "dark" : ""}>
             <div className="flex h-screen w-screen relative dark:bg-zinc-800 lg:px-32 px-4 bg-slate-50 overflow-hidden">

@@ -5,5 +5,4 @@ export { ArchivesPage } from "./ArchivesPage";
 export { ProfilePage } from "./ProfilePage";
 export { HomePage } from "./HomePage";
 export { ConditionalRouter } from "./ConditionalRouter";
-export { SignInPage } from "./SignInPage";
-export { SignUpPage } from "./SignUpPage";
+export { AuthPage } from "./AuthPage";
