@@ -37,6 +37,8 @@ export const NoteEditor = () => {
         [darkTheme]
     );
 
+    const colors = ["red", "yellow", "green", "blue", "default"];
+
     const prepareNoteData = () => ({
         heading: noteDetails.heading,
         body: noteDetails.body,
@@ -129,41 +131,17 @@ export const NoteEditor = () => {
                             High
                         </option>
                     </select>
-                    <button
-                        onClick={() => dispatch(setColor("red"))}
-                        className={`ml-auto h-5 w-5 bg-red-500 rounded-md mx-1 ${
-                            noteDetails.color === "red"
-                                ? "border-2 scale-125 shadow-md border-zinc-600 dark:border-slate-200"
-                                : ""
-                        }`}></button>
-                    <button
-                        onClick={() => dispatch(setColor("yellow"))}
-                        className={`h-5 w-5 bg-yellow-500 rounded-md mx-1 ${
-                            noteDetails.color === "yellow"
-                                ? "border-2 scale-125 shadow-md border-zinc-600 dark:border-slate-200"
-                                : ""
-                        }`}></button>
-                    <button
-                        onClick={() => dispatch(setColor("green"))}
-                        className={`h-5 w-5 bg-green-500 rounded-md mx-1 ${
-                            noteDetails.color === "green"
-                                ? "border-2 scale-125 shadow-md border-zinc-600 dark:border-slate-200"
-                                : ""
-                        }`}></button>
-                    <button
-                        onClick={() => dispatch(setColor("blue"))}
-                        className={`h-5 w-5 bg-blue-500 rounded-md mx-1 ${
-                            noteDetails.color === "blue"
-                                ? "border-2 scale-125 shadow-md border-zinc-600 dark:border-slate-200"
-                                : ""
-                        }`}></button>
-                    <button
-                        onClick={() => dispatch(setColor("default"))}
-                        className={`h-5 w-5 border rounded-md mx-1 ${
-                            noteDetails.color === "default"
-                                ? "border-2 scale-125 shadow-md border-zinc-600 dark:border-slate-200"
-                                : ""
-                        }`}></button>
+                    <div className="ml-auto">
+                        {colors.map((color) => (
+                            <button
+                                onClick={() => dispatch(setColor(color))}
+                                className={`ml-auto h-5 w-5 bg-${color}-500 rounded-md mx-1 ${
+                                    noteDetails.color === color
+                                        ? "border-2 scale-125 shadow-md border-zinc-600 dark:border-slate-200"
+                                        : ""
+                                }`}></button>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Action Button */}
