@@ -35,7 +35,10 @@ export const ConditionalRouter = () => {
                     <Route element={<ProtectedRoute isLoggedIn={isLoggedIn} />}>
                         <Route path="notes" element={<NotesPage />} />
                         <Route path="archives" element={<ArchivesPage />} />
-                        <Route path="tags" element={<TagsPage />} />
+                        <Route
+                            path="tags"
+                            element={<Navigate to="/tags/ALL" />}
+                        />
                         <Route path="tags/:tag" element={<TagsPage />} />
                         <Route path="trash" element={<TrashPage />} />
                         <Route path="profile" element={<ProfilePage />} />
@@ -48,8 +51,8 @@ export const ConditionalRouter = () => {
                 </Route>
             </Routes>
             <ToastContainer
-                position="top-right"
-                autoClose={2000}
+                position="bottom-right"
+                autoClose={750}
                 hideProgressBar={true}
                 newestOnTop={false}
                 closeOnClick
