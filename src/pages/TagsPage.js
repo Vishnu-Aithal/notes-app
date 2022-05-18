@@ -43,7 +43,7 @@ export const TagsPage = () => {
     }, [notes, tagUrl]);
     return (
         <ContentLayout>
-            <div className="w-full p-2 flex gap-2">
+            <div className="w-full p-2 flex flex-wrap gap-2">
                 {tags.map((tag) => (
                     <TagLink tag={tag} />
                 ))}
