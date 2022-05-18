@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState, useMemo } from "react";
-import { PlusIcon } from "./Icons";
+import { CloseIcon, PlusIcon } from "./Icons";
 import JoditEditor from "jodit-react";
 import { useDispatch, useSelector } from "react-redux";
 import {
     addTag,
     hideEditor,
+    removeTag,
+    resetEditor,
     setBody,
     setColor,
     setHeading,
@@ -14,9 +16,15 @@ import {
 import { addNewNote } from "store/allNotesSlice";
 
 const Tag = ({ name }) => {
+    const dispatch = useDispatch();
     return (
-        <div className="rounded-full px-2 py-1 bg-gray-200 dark:bg-zinc-700 text-xs font-medium">
-            {name}
+        <div className="rounded-full px-2 py-1 flex items-center gap-1 bg-gray-200 dark:bg-zinc-700 text-xs font-medium">
+            <p>{name}</p>
+            <button
+                onClick={() => dispatch(removeTag(name))}
+                className="hover:bg-gray-500 rounded-full p-1">
+                <CloseIcon className={"h-3 w-3"} />
+            </button>
         </div>
     );
 };
@@ -37,9 +45,15 @@ export const NoteEditor = () => {
         [darkTheme]
     );
 
-    const colors = ["red", "yellow", "green", "blue", "default"];
+    const colors = {
+        red: "bg-red-500",
+        yellow: "bg-yellow-500",
+        green: "bg-green-500",
+        blue: "bg-blue-500",
+        default: "",
+    };
 
-    const prepareNoteData = () => ({
+    const prepareNewNoteData = () => ({
         heading: noteDetails.heading,
         body: noteDetails.body,
         tags: noteDetails.tags,
@@ -64,7 +78,7 @@ export const NoteEditor = () => {
                 ))
             }
             ref={editor}
-            className="fixed w-10/12 sm:w-4/12 sm:bottom-14 bottom-10 sm:right-14 right-6 z-10 bg-white dark:bg-zinc-800 text-zinc-800 dark:text-slate-300">
+            className="fixed w-10/12 sm:w-96 sm:bottom-14 bottom-10 sm:right-14 right-6 z-10 bg-white dark:bg-zinc-800 text-zinc-800 dark:text-slate-300">
             {/* Editor Window */}
 
             <div
@@ -90,10 +104,12 @@ export const NoteEditor = () => {
                 />
 
                 {/* Tags Container */}
-                <div className="flex items-center mt-2 gap-1">
+                <div className="flex flex-wrap items-center mt-2 gap-1">
                     <input
                         value={newTag}
-                        onChange={(e) => setNewTag(e.target.value)}
+                        onChange={(e) =>
+                            setNewTag(e.target.value.toUpperCase())
+                        }
                         className="p-1 px-2 border rounded-full text-xs outline-none bg-inherit dark:border-zinc-600 w-20 "
                         type="text"
                         placeholder="New Tag"
@@ -132,10 +148,13 @@ export const NoteEditor = () => {
                         </option>
                     </select>
                     <div className="ml-auto">
-                        {colors.map((color) => (
+                        {Object.keys(colors).map((color) => (
                             <button
+                                key={color}
                                 onClick={() => dispatch(setColor(color))}
-                                className={`ml-auto h-5 w-5 bg-${color}-500 rounded-md mx-1 ${
+                                className={`ml-auto h-5 w-5 ${
+                                    colors[color]
+                                } rounded-md mx-1 ${
                                     noteDetails.color === color
                                         ? "border-2 scale-125 shadow-md border-zinc-600 dark:border-slate-200"
                                         : ""
@@ -149,7 +168,8 @@ export const NoteEditor = () => {
                     <button
                         disabled={!(noteDetails.heading && noteDetails.body)}
                         onClick={() => {
-                            dispatch(addNewNote(prepareNoteData()));
+                            dispatch(addNewNote(prepareNewNoteData()));
+                            setNewTag("");
                         }}
                         className="px-3 py-1 rounded-md bg-amber-300 dark:bg-amber-800 ml-auto m-2 disabled:pointer-events-none disabled:bg-gray-500">
                         Add Note
