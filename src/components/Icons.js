@@ -103,6 +103,26 @@ export const ArchiveIcon = ({ className }) => {
         </svg>
     );
 };
+export const UnArchiveIcon = ({ className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+            viewBox="0 0 24 24"
+            fill="currentColor">
+            <g>
+                <rect fill="none" height="24" width="24" x="0" />
+            </g>
+            <g>
+                <g>
+                    <g>
+                        <path d="M20.55,5.22l-1.39-1.68C18.88,3.21,18.47,3,18,3H6C5.53,3,5.12,3.21,4.85,3.55L3.46,5.22C3.17,5.57,3,6.01,3,6.5V19 c0,1.1,0.89,2,2,2h14c1.1,0,2-0.9,2-2V6.5C21,6.01,20.83,5.57,20.55,5.22z M12,9.5l5.5,5.5H14v2h-4v-2H6.5L12,9.5z M5.12,5 l0.82-1h12l0.93,1H5.12z" />
+                    </g>
+                </g>
+            </g>
+        </svg>
+    );
+};
 
 export const TagIcon = ({ className }) => {
     return (
@@ -135,6 +155,32 @@ export const TrashIcon = ({ className }) => {
                 strokeLinejoin="round"
                 d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
             />
+        </svg>
+    );
+};
+export const DeleteTrashIcon = ({ className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+            viewBox="0 0 24 24"
+            fill="currentColor">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M0 0h24v24H0V0z" fill="none" />
+            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zm2.46-7.12l1.41-1.41L12 12.59l2.12-2.12 1.41 1.41L13.41 14l2.12 2.12-1.41 1.41L12 15.41l-2.12 2.12-1.41-1.41L10.59 14l-2.13-2.12zM15.5 4l-1-1h-5l-1 1H5v2h14V4z" />
+        </svg>
+    );
+};
+export const UnTrashIcon = ({ className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            strokeWidth={2}>
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M19 4h-3.5l-1-1h-5l-1 1H5v2h14zM6 7v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6zm8 7v4h-4v-4H8l4-4 4 4h-2z" />
         </svg>
     );
 };
