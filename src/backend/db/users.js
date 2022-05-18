@@ -38,7 +38,7 @@ export const users = [
             {
                 heading: "features to add",
                 body: "<p>- profile page</p><p>- another login method</p><p>- dark mode</p>",
-                tags: ["SIDE PROJECT"],
+                tags: ["SIDE-PROJECT"],
                 priority: "low",
                 color: "default",
                 pinned: false,
