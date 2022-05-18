@@ -29,6 +29,7 @@ const editorSlice = createSlice({
             state.showEditor = !state.showEditor;
         },
         setEditNoteDetails(state, action) {
+            state.showEditor = true;
             state.mode = "edit";
             state.editNoteId = action.payload._id;
             state.heading = action.payload.heading;
@@ -63,7 +64,6 @@ export const editorReducer = editorSlice.reducer;
 export const {
     resetEditor,
     addTag,
-    editNote,
     removeTag,
     setBody,
     setColor,
