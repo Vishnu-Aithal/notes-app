@@ -1,11 +1,24 @@
 import {
     ArchiveIcon,
-    ColorSwatchIcon,
-    TagIcon,
     PinIcon,
     TrashIcon,
+    PencilIcon,
+    UnArchiveIcon,
+    DeleteTrashIcon,
+    UnTrashIcon,
 } from "./Icons";
 import { Interweave } from "interweave";
+import {
+    addToArchives,
+    addToTrash,
+    deleteFromArchive,
+    deleteFromTrash,
+    restoreFromArchive,
+    restoreFromTrash,
+} from "store/allNotesSlice";
+import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
+import { setEditNoteDetails } from "store/editorSlice";
 const Tag = ({ name }) => {
     return (
         <div className="rounded-full px-2 py-1 bg-gray-200 dark:bg-zinc-700 text-xs font-medium">
@@ -14,6 +27,8 @@ const Tag = ({ name }) => {
     );
 };
 export const Note = ({ note }) => {
+    const { pathname: place } = useLocation();
+    const dispatch = useDispatch();
     const bgColor = {
         red: "bg-red-300",
         yellow: "bg-yellow-300",
@@ -39,11 +54,15 @@ export const Note = ({ note }) => {
             {/* Header */}
             <div className="flex">
                 <h1 className="text-xl font-semibold">{note.heading}</h1>
-                <button className="ml-auto  opacity-0 group-hover:opacity-100 transition-opacity delay-150">
-                    <PinIcon
-                        className={"h-6 w-6 hover:-rotate-45 transition-all"}
-                    />
-                </button>
+                {place === "/notes" && (
+                    <button className="ml-auto  opacity-0 group-hover:opacity-100 transition-opacity delay-150">
+                        <PinIcon
+                            className={
+                                "h-6 w-6 hover:-rotate-45 transition-all"
+                            }
+                        />
+                    </button>
+                )}
             </div>
 
             {/* Body */}
@@ -54,7 +73,7 @@ export const Note = ({ note }) => {
             {/* Tags */}
             <div className="flex flex-wrap gap-2 items-center my-2">
                 {note.tags.map((tag) => (
-                    <Tag name={tag} />
+                    <Tag key={tag} name={tag} />
                 ))}
             </div>
 
@@ -67,18 +86,53 @@ export const Note = ({ note }) => {
 
                 {/* Footer CTA */}
                 <div className="flex ml-auto gap-2 opacity-0 group-hover:opacity-100 transition-opacity delay-150">
-                    <button>
-                        <ColorSwatchIcon className="h-5 w-5 stroke-1 hover:stroke-2" />
-                    </button>
-                    <button>
-                        <TagIcon className="h-5 w-5 stroke-1 hover:stroke-2" />
-                    </button>
-                    <button>
-                        <ArchiveIcon className="h-5 w-5 stroke-1 hover:stroke-2" />
-                    </button>
-                    <button>
-                        <TrashIcon className="h-5 w-5 stroke-1 hover:stroke-2" />
-                    </button>
+                    {(place === "/notes" || place.includes("tags")) && (
+                        <>
+                            <button
+                                onClick={() =>
+                                    dispatch(setEditNoteDetails(note))
+                                }>
+                                <PencilIcon className="h-5 w-5 hover:scale-110" />
+                            </button>
+                            <button
+                                onClick={() => dispatch(addToArchives(note))}>
+                                <ArchiveIcon className="h-5 w-5 hover:scale-110" />
+                            </button>
+                            <button onClick={() => dispatch(addToTrash(note))}>
+                                <TrashIcon className="h-5 w-5 hover:scale-110" />
+                            </button>
+                        </>
+                    )}
+                    {place === "/archives" && (
+                        <>
+                            <button
+                                onClick={() =>
+                                    dispatch(restoreFromArchive(note))
+                                }>
+                                <UnArchiveIcon className="h-5 w-5 hover:scale-110" />
+                            </button>
+                            <button
+                                onClick={() =>
+                                    dispatch(deleteFromArchive(note))
+                                }>
+                                <DeleteTrashIcon className="h-5 w-5 hover:scale-110 text-red-500" />
+                            </button>
+                        </>
+                    )}
+                    {place === "/trash" && (
+                        <>
+                            <button
+                                onClick={() =>
+                                    dispatch(restoreFromTrash(note))
+                                }>
+                                <UnTrashIcon className="h-5 w-5 hover:scale-110" />
+                            </button>
+                            <button
+                                onClick={() => dispatch(deleteFromTrash(note))}>
+                                <DeleteTrashIcon className="h-5 w-5 hover:scale-110 text-red-500" />
+                            </button>
+                        </>
+                    )}
                 </div>
             </div>
         </div>
