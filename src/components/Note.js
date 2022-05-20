@@ -141,6 +141,9 @@ export const Note = ({ note }) => {
                         </>
                     )}
                 </div>
+                <p className="text-xs font-bold text-zinc-600 dark:text-gray-200 px-2 py-1 bg-gray-200 dark:bg-zinc-700 ml-2 rounded-md">
+                    {note.priority}
+                </p>
             </div>
         </div>
     );
