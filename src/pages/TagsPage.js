@@ -45,11 +45,11 @@ export const TagsPage = () => {
         <ContentLayout>
             <div className="w-full p-2 flex flex-wrap gap-2">
                 {tags.map((tag) => (
-                    <TagLink tag={tag} />
+                    <TagLink key={tag} tag={tag} />
                 ))}
             </div>
             {notesToDisplay.map((note) => (
-                <Note note={note} />
+                <Note key={note._id} note={note} />
             ))}
         </ContentLayout>
     );
