@@ -38,8 +38,8 @@ export const processFilter = createAsyncThunk(
             newFilteredNotes = newFilteredNotes.filter((note) => {
                 for (const tag of note.tags) {
                     if (filter.tags.includes(tag)) return true;
-                    return false;
                 }
+                return false;
             });
         }
         //Priorities
