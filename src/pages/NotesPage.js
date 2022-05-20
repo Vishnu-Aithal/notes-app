@@ -3,7 +3,7 @@ import { Filter } from "components/Filter";
 import { Note } from "components/Note";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUnFilteredNotes } from "store/filteredNotesSlice";
+import { resetFilters, setUnFilteredNotes } from "store/filteredNotesSlice";
 
 export const NotesPage = () => {
     const dispatch = useDispatch();
@@ -14,6 +14,9 @@ export const NotesPage = () => {
         dispatch(setUnFilteredNotes(notes));
         setPinNotes();
     }, [notes, dispatch]);
+    useEffect(() => {
+        dispatch(resetFilters());
+    }, [dispatch]);
 
     useEffect(() => {
         const pinned = filteredNotes.filter((note) => note.pinned);

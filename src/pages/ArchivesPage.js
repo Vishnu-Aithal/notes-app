@@ -3,7 +3,7 @@ import { Filter } from "components/Filter";
 import { Note } from "components/Note";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUnFilteredNotes } from "store/filteredNotesSlice";
+import { resetFilters, setUnFilteredNotes } from "store/filteredNotesSlice";
 
 export const ArchivesPage = () => {
     const archives = useSelector((state) => state.allNotes.archives);
@@ -12,6 +12,9 @@ export const ArchivesPage = () => {
     useEffect(() => {
         dispatch(setUnFilteredNotes(archives));
     }, [archives, dispatch]);
+    useEffect(() => {
+        dispatch(resetFilters());
+    }, [dispatch]);
     return (
         <ContentLayout>
             <Filter />
