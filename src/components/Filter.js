@@ -48,7 +48,7 @@ export const Filter = () => {
                 value={filter.searchTerm}
                 onChange={(e) => dispatch(setSearchTerm(e.target.value))}
                 type="search"
-                className=" bg-gray-100 dark:bg-zinc-700 p-2 rounded-md focus:bg-white dark:focus:bg-zinc-600 focus:shadow-md focus:border-2 focus:border-gray-200 dark:focus:border-none focus:outline-none lg:w-1/3 w-2/3"
+                className=" bg-gray-100 dark:text-slate-200 dark:bg-zinc-700 p-2 rounded-md focus:bg-white dark:focus:bg-zinc-600 focus:shadow-md focus:border-2 focus:border-gray-200 dark:focus:border-none focus:outline-none lg:w-1/3 w-2/3"
                 placeholder="Search Headings..."
             />
             <button
@@ -116,7 +116,7 @@ export const Filter = () => {
                 </div>
                 {/* Filter By Priority */}
                 <div className="p-4 border-b-1 border-gray-200 dark:border-zinc-700">
-                    <p className="font-bold mb-2">Filter By Tags</p>
+                    <p className="font-bold mb-2">Filter By Priority</p>
                     <div className="ml-2 text-sm font-medium flex flex-col space-y-2">
                         {priorities.map((priority) => (
                             <label key={priority} htmlFor={priority}>
