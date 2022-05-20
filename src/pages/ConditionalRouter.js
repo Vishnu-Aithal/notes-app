@@ -2,7 +2,6 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import App from "App";
 import {
     NotesPage,
-    ProfilePage,
     ArchivesPage,
     TagsPage,
     TrashPage,
@@ -41,7 +40,6 @@ export const ConditionalRouter = () => {
                         />
                         <Route path="tags/:tag" element={<TagsPage />} />
                         <Route path="trash" element={<TrashPage />} />
-                        <Route path="profile" element={<ProfilePage />} />
                     </Route>
                 </Route>
                 <Route element={<ProtectedAuth isLoggedIn={isLoggedIn} />}>

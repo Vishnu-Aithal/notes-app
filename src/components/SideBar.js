@@ -84,6 +84,10 @@ export const SideBar = () => {
                 </li>
 
                 <li>
+                    <TagSubMenu tags={tags} />
+                </li>
+
+                <li>
                     <SideBarNavLink
                         to={"/archives"}
                         Icon={ArchiveIcon}
@@ -92,22 +96,10 @@ export const SideBar = () => {
                 </li>
 
                 <li>
-                    <TagSubMenu tags={tags} />
-                </li>
-
-                <li>
                     <SideBarNavLink
                         to={"/trash"}
                         Icon={TrashIcon}
                         name={"Trash"}
-                    />
-                </li>
-
-                <li>
-                    <SideBarNavLink
-                        to={"/profile"}
-                        Icon={UserIcon}
-                        name={"Profile"}
                     />
                 </li>
             </ul>
