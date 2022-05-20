@@ -9,7 +9,7 @@ const initialState = {
     tags: [],
     color: "default",
     pinned: false,
-    priority: "low",
+    priority: "Low",
 };
 
 const editorSlice = createSlice({
