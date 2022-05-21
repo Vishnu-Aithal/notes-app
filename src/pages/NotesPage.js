@@ -1,32 +1,46 @@
 import { ContentLayout } from "components/ContentLayout";
 import { Filter } from "components/Filter";
-import { FilterIcon } from "components/Icons";
 import { Note } from "components/Note";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { resetFilters, setUnFilteredNotes } from "store/filteredNotesSlice";
 
-export const NotesPage = ({}) => {
-    const [showFilter, setShowFilter] = useState(false);
+export const NotesPage = () => {
     const dispatch = useDispatch();
     const notes = useSelector((state) => state.allNotes.notes);
+    const [pinNotes, setPinNotes] = useState({ pinned: [], unPinned: [] });
+    const { filteredNotes } = useSelector((state) => state.filteredNotes);
+    useEffect(() => {
+        dispatch(setUnFilteredNotes(notes));
+        setPinNotes();
+    }, [notes, dispatch]);
+    useEffect(() => {
+        dispatch(resetFilters());
+    }, [dispatch]);
+
+    useEffect(() => {
+        const pinned = filteredNotes.filter((note) => note.pinned);
+        const unPinned = filteredNotes.filter((note) => !note.pinned);
+        setPinNotes({ pinned, unPinned });
+    }, [filteredNotes]);
     return (
         <ContentLayout>
-            <div className="w-full text-center relative">
-                <input
-                    type="search"
-                    className=" bg-gray-100 dark:bg-zinc-700 p-2 rounded-md focus:bg-white dark:focus:bg-zinc-600 focus:shadow-md focus:border-2 focus:border-gray-200 dark:focus:border-none focus:outline-none lg:w-1/3 w-2/3"
-                    placeholder="Search Notes"
-                />
-                <button
-                    className={`align-middle ml-2 ${
-                        showFilter ? "pointer-events-none" : ""
-                    }`}
-                    onClick={() => setShowFilter(true)}>
-                    <FilterIcon className={"h-5 w-5 text-zinc-500"} />
-                </button>
-                <Filter {...{ showFilter, setShowFilter }} />
-            </div>
-            {notes.map((note) => (
+            <Filter />
+            {pinNotes.pinned.length !== 0 && (
+                <div className="flex flex-wrap gap-6 w-full animate-fade-in">
+                    <h2 className="w-full text-lg font-semibold ml-1 text-zinc-500">
+                        PINNED
+                    </h2>
+                    {pinNotes.pinned.map((note) => (
+                        <Note key={note._id} note={note} />
+                    ))}
+                    <hr className="w-full h-1 bg-zinc-500 border-0" />
+                    <h2 className="w-full text-lg font-semibold ml-1 text-zinc-500">
+                        OTHERS
+                    </h2>
+                </div>
+            )}
+            {pinNotes.unPinned.map((note) => (
                 <Note key={note._id} note={note} />
             ))}
         </ContentLayout>

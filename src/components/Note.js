@@ -15,6 +15,7 @@ import {
     deleteFromTrash,
     restoreFromArchive,
     restoreFromTrash,
+    updateNote,
 } from "store/allNotesSlice";
 import { useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -46,7 +47,7 @@ export const Note = ({ note }) => {
     return (
         <div
             className={
-                "flex flex-col h-fit border-1 sm:w-96 w-72 rounded-lg p-4 text-gray-600 hover:shadow-md dark:shadow-zinc-700 transition-shadow group dark:bg-zinc-800 dark:text-slate-300 " +
+                "animate-fade-in flex flex-col h-fit border-1 sm:w-96 w-72 rounded-lg p-4 text-gray-600 hover:shadow-md dark:shadow-zinc-700 transition-shadow group dark:bg-zinc-800 dark:text-slate-300 " +
                 borderColor[note.color] +
                 " " +
                 bgColor[note.color]
@@ -55,12 +56,18 @@ export const Note = ({ note }) => {
             <div className="flex">
                 <h1 className="text-xl font-semibold">{note.heading}</h1>
                 {place === "/notes" && (
-                    <button className="ml-auto  opacity-0 group-hover:opacity-100 transition-opacity delay-150">
-                        <PinIcon
-                            className={
-                                "h-6 w-6 hover:-rotate-45 transition-all"
-                            }
-                        />
+                    <button
+                        onClick={() =>
+                            dispatch(
+                                updateNote({ ...note, pinned: !note.pinned })
+                            )
+                        }
+                        className={`ml-auto  ${
+                            note.pinned
+                                ? "-rotate-45"
+                                : "opacity-0 group-hover:opacity-100 hover:-rotate-45"
+                        } transition-all delay-150`}>
+                        <PinIcon className={`h-6 w-6`} />
                     </button>
                 )}
             </div>
@@ -134,6 +141,9 @@ export const Note = ({ note }) => {
                         </>
                     )}
                 </div>
+                <p className="text-xs font-bold text-zinc-600 dark:text-gray-200 px-2 py-1 bg-gray-200 dark:bg-zinc-700 ml-2 rounded-md">
+                    {note.priority}
+                </p>
             </div>
         </div>
     );
