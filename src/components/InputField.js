@@ -23,6 +23,7 @@ export const InputField = ({ type, label, name, value, onChange }) => {
             </label>
             {type === "password" && (
                 <button
+                    type="button"
                     className="absolute right-1 top-1 text-zinc-600 dark:text-slate-300"
                     onClick={() => setShowPassword((state) => !state)}>
                     {showPassword ? (
