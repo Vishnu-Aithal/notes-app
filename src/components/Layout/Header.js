@@ -1,4 +1,4 @@
-import { LogOutIcon, NoteIcon } from "./Icons";
+import { LogOutIcon, NoteIcon } from "../../assets/Icons/Icons";
 import { Link } from "react-router-dom";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { useDispatch } from "react-redux";

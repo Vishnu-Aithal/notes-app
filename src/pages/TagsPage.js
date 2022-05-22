@@ -1,5 +1,5 @@
-import { ContentLayout } from "components/ContentLayout";
-import { Note } from "components/Note";
+import { ContentLayout } from "components/Layout/ContentLayout";
+import { Note } from "components/Note/Note";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";

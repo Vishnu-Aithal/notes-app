@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { ArrowRightIcon } from "./Icons";
+import { ArrowRightIcon } from "../../assets/Icons/Icons";
 import { logInAction } from "store/authSlice";
 import { InputField } from "./InputField";
 

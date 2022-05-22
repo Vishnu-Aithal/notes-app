@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
-import { Header } from "./components/Header";
-import { SideBar } from "./components/SideBar";
+import { Header } from "./components/Layout/Header";
+import { SideBar } from "./components/Layout/SideBar/SideBar";
 import { useDispatch, useSelector } from "react-redux";
-import { NoteEditor } from "components/NoteEditor";
+import { NoteEditor } from "components/NoteEditor/NoteEditor";
 import { useEffect } from "react";
 import { getAllNotes } from "store/allNotesSlice";
 

@@ -1,5 +1,5 @@
-import { HeroImage } from "components/HeroImage";
-import { ThemeSwitcher } from "components/ThemeSwitcher";
+import { HeroImage } from "assets/images/HeroImage";
+import { ThemeSwitcher } from "components/Layout/ThemeSwitcher";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDarkTheme } from "store/themeSlice";
 import { Link } from "react-router-dom";

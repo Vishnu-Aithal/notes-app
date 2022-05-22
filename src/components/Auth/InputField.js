@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { OpenEyeIcon, ClosedEyeIcon } from "./Icons";
+import { OpenEyeIcon, ClosedEyeIcon } from "../../assets/Icons/Icons";
 
 export const InputField = ({ type, label, name, value, onChange }) => {
     const [showPassword, setShowPassword] = useState(false);

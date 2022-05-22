@@ -1,6 +1,6 @@
-import { ContentLayout } from "components/ContentLayout";
-import { Filter } from "components/Filter";
-import { Note } from "components/Note";
+import { ContentLayout } from "components/Layout/ContentLayout";
+import { Filter } from "components/Filter/Filter";
+import { Note } from "components/Note/Note";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFilters, setUnFilteredNotes } from "store/filteredNotesSlice";

@@ -1,4 +1,9 @@
 import { Route, Routes, Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import App from "App";
 import {
     NotesPage,
@@ -8,12 +13,9 @@ import {
     HomePage,
     AuthPage,
 } from "./Routes";
-import { useDispatch, useSelector } from "react-redux";
 import { ProtectedRoute, ProtectedAuth } from "./Protected";
-import { useEffect } from "react";
+
 import { restoreLogin } from "store/authSlice";
-import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
 
 export const ConditionalRouter = () => {
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);

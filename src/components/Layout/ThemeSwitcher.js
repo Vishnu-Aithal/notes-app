@@ -1,4 +1,4 @@
-import { MoonIcon } from "components/Icons";
+import { MoonIcon } from "assets/Icons/Icons";
 export const ThemeSwitcher = ({ setDarkTheme, className }) => {
     return (
         <button

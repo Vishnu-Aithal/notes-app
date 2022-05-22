@@ -1,9 +1,9 @@
-import { ThemeSwitcher } from "components/ThemeSwitcher";
-import { SignIn } from "components/SignIn";
+import { ThemeSwitcher } from "components/Layout/ThemeSwitcher";
+import { SignIn } from "components/Auth/SignIn";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleDarkTheme } from "store/themeSlice";
 import { useLocation } from "react-router-dom";
-import { SignUp } from "components/SignUp";
+import { SignUp } from "components/Auth/SignUp";
 
 export const AuthPage = () => {
     const darkTheme = useSelector((state) => state.theme.darkTheme);
