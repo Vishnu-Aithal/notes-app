@@ -12,6 +12,7 @@ import {
     TrashPage,
     HomePage,
     AuthPage,
+    KanbanPage,
 } from "./Routes";
 import { ProtectedRoute, ProtectedAuth } from "./Protected";
 
@@ -42,6 +43,7 @@ export const ConditionalRouter = () => {
                         />
                         <Route path="tags/:tag" element={<TagsPage />} />
                         <Route path="trash" element={<TrashPage />} />
+                        <Route path="kanban" element={<KanbanPage />} />
                     </Route>
                 </Route>
                 <Route element={<ProtectedAuth isLoggedIn={isLoggedIn} />}>

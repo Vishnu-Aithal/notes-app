@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { PencilIcon, ArchiveIcon, TrashIcon } from "assets/Icons/Icons.js";
+import {
+    PencilIcon,
+    ArchiveIcon,
+    TrashIcon,
+    KanbanIcon,
+} from "assets/Icons/Icons.js";
 import { useSelector } from "react-redux";
 import { SideBarNavLink } from "./SideBarNavLink";
 import { TagSubMenu } from "./TagSubMenu";
@@ -47,6 +52,13 @@ export const SideBar = () => {
                         to={"/trash"}
                         Icon={TrashIcon}
                         name={"Trash"}
+                    />
+                </li>
+                <li>
+                    <SideBarNavLink
+                        to={"/kanban"}
+                        Icon={KanbanIcon}
+                        name={"Kanban"}
                     />
                 </li>
             </ul>
