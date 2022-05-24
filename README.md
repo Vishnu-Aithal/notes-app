@@ -2,7 +2,7 @@
 
 ---
 
-## ![Site Video]()
+## ![Site Video](https://github.com/Vishnu-Aithal/notes-app/blob/dev/src/assets/images/notes-react.gif)
 
 Live Link - https://notes-app-git-dev-vishnu-aithal.vercel.app/
 
@@ -57,7 +57,7 @@ Live Link - https://notes-app-git-dev-vishnu-aithal.vercel.app/
     -   edit todo
     -   delete todo
     -   drag and drop todos
-
+-   And Many More
 ---
 
 > ### How to run locally:
