@@ -13,6 +13,7 @@ export const getAllTodos = createAsyncThunk(
         try {
             const config = getConfig(thunkApi);
             const response = await axios.get("/api/todos", config);
+            toast.success("Todos Fetched Successfully");
             return response.data;
         } catch (error) {
             console.log(error);
