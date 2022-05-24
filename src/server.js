@@ -70,6 +70,11 @@ export function makeServer({ environment = "development" } = {}) {
             this.delete("/notes/:noteId", deleteNoteHandler.bind(this));
             this.post("/notes/archives/:noteId", archiveNoteHandler.bind(this));
             this.post("/notes/trash/:noteId", trashNoteHandler.bind(this));
+            // todos routes (private)
+            this.get("/todos", getAllTodosHandler.bind(this));
+            this.post("/todos", createTodoHandler.bind(this));
+            this.post("/todos/:todoId", updateTodoHandler.bind(this));
+            this.delete("/todos/:todoId", deleteTodoHandler.bind(this));
 
             // archive routes (private)
             this.get("/archives", getAllArchivedNotesHandler.bind(this));

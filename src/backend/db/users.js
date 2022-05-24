@@ -14,6 +14,11 @@ export const users = [
         password: "adarshBalika123",
         createdAt: formatDate(),
         updatedAt: formatDate(),
+        todos: [
+            { name: "add feature", status: "todo", _id: uuid() },
+            { name: "fix issue", status: "todo", _id: uuid() },
+            { name: "merge pr", status: "todo", _id: uuid() },
+        ],
         notes: [
             {
                 heading: "Grocery List",
