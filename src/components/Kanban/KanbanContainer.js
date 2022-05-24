@@ -21,7 +21,8 @@ export const KanbanContainer = ({ children, heading }) => {
             onDragLeave={(e) => {
                 e.preventDefault();
                 if (
-                    e.relatedTarget.closest(".kanban-container")?.id !== heading
+                    e?.relatedTarget?.closest(".kanban-container")?.id !==
+                    heading
                 )
                     setDragOver(false);
             }}

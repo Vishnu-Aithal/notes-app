@@ -25,7 +25,7 @@ export const KanbanPage = () => {
         setClassifiedTodos(classifiedTodos);
     }, [todos]);
     return (
-        <div className="flex sm:flex-row flex-col gap-2 sm:gap-0 w-full p-6 dark:text-slate-300 sm:divide-x-2 dark:divide-zinc-600">
+        <div className="flex sm:flex-row flex-col gap-2 sm:gap-0 w-full p-6 dark:text-slate-300 sm:divide-x-2 dark:divide-zinc-600 h-fit">
             <KanbanContainer heading={"TODO"}>
                 <NewTodo todos={todos} />
                 {classifiedTodos.todo.map((todo) => (
