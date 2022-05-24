@@ -41,6 +41,7 @@ Live Link - https://notes-app-git-dev-vishnu-aithal.vercel.app/
     -   priority
 -   Notes Body Displayed with HTML Parser
 -   Edit Notes
+-   Pin Notes
 -   Delete Notes
 -   Dynamic User Generated Tags
 -   sidebar links for tags
@@ -51,6 +52,11 @@ Live Link - https://notes-app-git-dev-vishnu-aithal.vercel.app/
     -   priority
     -   Search Term
     -   Date
+-   Kanban Dashboard
+    -   create todo
+    -   edit todo
+    -   delete todo
+    -   drag and drop todos
 
 ---
 
