@@ -4,6 +4,7 @@ import { authReducer } from "./authSlice";
 import { editorReducer } from "./editorSlice";
 import { themeReducer } from "./themeSlice";
 import { filteredNotesReducer } from "./filteredNotesSlice";
+import { todosReducer } from "./todosSlice";
 
 export const store = configureStore({
     reducer: {
@@ -12,5 +13,6 @@ export const store = configureStore({
         editor: editorReducer,
         allNotes: allNotesReducer,
         filteredNotes: filteredNotesReducer,
+        todos: todosReducer,
     },
 });
