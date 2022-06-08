@@ -1,6 +1,19 @@
-const { createSlice } = require("@reduxjs/toolkit");
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { NoteColors, NotePriority, NoteType } from "types/Note";
 
-const initialState = {
+export interface EditorState {
+    showEditor: boolean;
+    editNoteId: string;
+    mode: "new" | "edit";
+    heading: string;
+    body: string;
+    tags: string[];
+    color: NoteColors;
+    pinned: boolean;
+    priority: NotePriority;
+}
+
+const initialState: EditorState = {
     showEditor: false,
     editNoteId: "",
     mode: "new",
@@ -16,7 +29,7 @@ const editorSlice = createSlice({
     name: "noteDetials",
     initialState,
     reducers: {
-        resetEditor(state) {
+        resetEditor() {
             return initialState;
         },
         showEditor(state) {
@@ -28,7 +41,10 @@ const editorSlice = createSlice({
         toggleEditor(state) {
             state.showEditor = !state.showEditor;
         },
-        setEditNoteDetails(state, action) {
+        setEditNoteDetails(
+            state,
+            action: PayloadAction<Omit<NoteType, "created">>
+        ) {
             state.showEditor = true;
             state.mode = "edit";
             state.editNoteId = action.payload._id;
@@ -39,22 +55,22 @@ const editorSlice = createSlice({
             state.pinned = action.payload.pinned;
             state.priority = action.payload.priority;
         },
-        setHeading(state, action) {
+        setHeading(state, action: PayloadAction<string>) {
             state.heading = action.payload;
         },
-        setBody(state, action) {
+        setBody(state, action: PayloadAction<string>) {
             state.body = action.payload;
         },
-        setColor(state, action) {
+        setColor(state, action: PayloadAction<NoteColors>) {
             state.color = action.payload;
         },
-        setPriority(state, action) {
+        setPriority(state, action: PayloadAction<NotePriority>) {
             state.priority = action.payload;
         },
-        addTag(state, action) {
+        addTag(state, action: PayloadAction<string>) {
             state.tags = [...state.tags, action.payload];
         },
-        removeTag(state, action) {
+        removeTag(state, action: PayloadAction<string>) {
             state.tags = state.tags.filter((tag) => tag !== action.payload);
         },
     },

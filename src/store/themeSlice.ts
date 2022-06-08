@@ -1,5 +1,9 @@
-const { createSlice } = require("@reduxjs/toolkit");
-const initialState = {
+import { createSlice } from "@reduxjs/toolkit";
+
+export interface ThemeState {
+    darkTheme: boolean;
+}
+const initialState: ThemeState = {
     darkTheme: false,
 };
 

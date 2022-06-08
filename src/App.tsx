@@ -1,15 +1,15 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "./components/Layout/Header";
 import { SideBar } from "./components/Layout/SideBar/SideBar";
-import { useDispatch, useSelector } from "react-redux";
 import { NoteEditor } from "components/NoteEditor/NoteEditor";
 import { useEffect } from "react";
 import { getAllNotes } from "store/allNotesSlice";
+import { useAppDispatch, useAppSelector } from "store/TypedExports";
 
 function App() {
-    const darkTheme = useSelector((state) => state.theme.darkTheme);
-    const dispatch = useDispatch();
-    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+    const darkTheme = useAppSelector((state) => state.theme.darkTheme);
+    const dispatch = useAppDispatch();
+    const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
     useEffect(() => {
         if (isLoggedIn) dispatch(getAllNotes());
     }, [isLoggedIn, dispatch]);

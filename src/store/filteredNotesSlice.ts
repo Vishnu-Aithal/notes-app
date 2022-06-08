@@ -1,6 +1,19 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { NotePriority, NoteType } from "types/Note";
+import { thunkApiConfig } from "./TypedExports";
 
-const initialState = {
+export interface FilterNotesState {
+    unFilteredNotes: NoteType[];
+    filteredNotes: NoteType[];
+    filter: {
+        tags: string[];
+        newestFirst: boolean;
+        priorities: string[];
+        searchTerm: string;
+    };
+}
+
+const initialState: FilterNotesState = {
     unFilteredNotes: [],
     filteredNotes: [],
     filter: {
@@ -11,61 +24,62 @@ const initialState = {
     },
 };
 
-export const processFilter = createAsyncThunk(
-    "filteredNotes/processFilter",
-    (_, thunkApi) => {
-        const { filter, unFilteredNotes } = thunkApi.getState().filteredNotes;
-        let newFilteredNotes = [...unFilteredNotes];
-        //SearchTerm
-        if (filter.searchTerm) {
-            const searchTermsArray = filter.searchTerm
-                .split(" ")
-                .filter((_) => _ !== "");
+export const processFilter = createAsyncThunk<
+    NoteType[],
+    undefined,
+    thunkApiConfig
+>("filteredNotes/processFilter", (_, thunkApi) => {
+    const { filter, unFilteredNotes } = thunkApi.getState().filteredNotes;
+    let newFilteredNotes = [...unFilteredNotes];
+    //SearchTerm
+    if (filter.searchTerm) {
+        const searchTermsArray = filter.searchTerm
+            .split(" ")
+            .filter((_) => _ !== "");
 
-            newFilteredNotes = newFilteredNotes.filter(({ heading }) => {
-                const headingWithoutSpaces = heading
-                    .replaceAll(" ", "")
-                    .toLowerCase();
+        newFilteredNotes = newFilteredNotes.filter(({ heading }) => {
+            const headingWithoutSpaces = heading
+                .replaceAll(" ", "")
+                .toLowerCase();
 
-                for (const word of searchTermsArray) {
-                    if (!headingWithoutSpaces.includes(word)) return false;
-                }
-                return true;
-            });
-        }
-        //Tags
-        if (filter.tags.length) {
-            newFilteredNotes = newFilteredNotes.filter((note) => {
-                for (const tag of note.tags) {
-                    if (filter.tags.includes(tag)) return true;
-                }
-                return false;
-            });
-        }
-        //Priorities
-        if (filter.priorities.length) {
-            newFilteredNotes = newFilteredNotes.filter((note) =>
-                filter.priorities.includes(note.priority)
-            );
-        }
-        //Order
-        if (filter.newestFirst) {
-            newFilteredNotes.sort((a, b) => {
-                return new Date(b.created) - new Date(a.created);
-            });
-        }
-        return newFilteredNotes;
+            for (const word of searchTermsArray) {
+                if (!headingWithoutSpaces.includes(word)) return false;
+            }
+            return true;
+        });
     }
-);
+    //Tags
+    if (filter.tags.length) {
+        newFilteredNotes = newFilteredNotes.filter((note) => {
+            for (const tag of note.tags) {
+                if (filter.tags.includes(tag)) return true;
+            }
+            return false;
+        });
+    }
+    //Priorities
+    if (filter.priorities.length) {
+        newFilteredNotes = newFilteredNotes.filter((note) =>
+            filter.priorities.includes(note.priority)
+        );
+    }
+    //Order
+    if (filter.newestFirst) {
+        newFilteredNotes.sort((a, b) => {
+            return Date.parse(b.created) - Date.parse(a.created);
+        });
+    }
+    return newFilteredNotes;
+});
 
 const filteredNotesSlice = createSlice({
     name: "filteredNotes",
     initialState,
     reducers: {
-        addTagToFilter(state, action) {
+        addTagToFilter(state, action: PayloadAction<string>) {
             state.filter.tags = [...state.filter.tags, action.payload];
         },
-        removeTagFromFilter(state, action) {
+        removeTagFromFilter(state, action: PayloadAction<string>) {
             state.filter.tags = state.filter.tags.filter(
                 (tag) => tag !== action.payload
             );
@@ -76,21 +90,21 @@ const filteredNotesSlice = createSlice({
         setOldestFirstFilter(state) {
             state.filter.newestFirst = false;
         },
-        addPriorityToFilter(state, action) {
+        addPriorityToFilter(state, action: PayloadAction<NotePriority>) {
             state.filter.priorities = [
                 ...state.filter.priorities,
                 action.payload,
             ];
         },
-        removePriorityFromFilter(state, action) {
+        removePriorityFromFilter(state, action: PayloadAction<NotePriority>) {
             state.filter.priorities = state.filter.priorities.filter(
                 (priority) => priority !== action.payload
             );
         },
-        setSearchTerm(state, action) {
+        setSearchTerm(state, action: PayloadAction<string>) {
             state.filter.searchTerm = action.payload;
         },
-        setUnFilteredNotes(state, action) {
+        setUnFilteredNotes(state, action: PayloadAction<NoteType[]>) {
             state.unFilteredNotes = action.payload;
         },
         resetFilters(state) {
@@ -113,7 +127,6 @@ export const {
     setNewestFirstFilter,
     setOldestFirstFilter,
     setSearchTerm,
-    setFilteredNotes,
     addPriorityToFilter,
     removePriorityFromFilter,
     setUnFilteredNotes,

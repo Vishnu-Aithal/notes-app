@@ -1,44 +1,60 @@
 import axios from "axios";
 import { toast } from "react-toastify";
 
-const { createSlice, createAsyncThunk } = require("@reduxjs/toolkit");
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { thunkApiConfig } from "./TypedExports";
 
-export const initialState = {
+export type AuthState =
+    | {
+          isLoggedIn: false;
+          userId: null;
+          token: null;
+      }
+    | {
+          isLoggedIn: true;
+          userId: string;
+          token: string;
+      };
+
+export const initialState: AuthState = {
     isLoggedIn: false,
     userId: null,
     token: null,
 };
 
-export const logInAction = createAsyncThunk(
-    "auth/logIn",
-    async (body, thunkAPI) => {
-        try {
-            const response = await axios.post("/api/auth/login", body);
-            const data = response.data;
-            localStorage.setItem(
-                "userData",
-                JSON.stringify({
-                    userId: data.foundUser._id,
-                    token: data.encodedToken,
-                })
-            );
-            toast.success("Log In Success");
-            return { userId: data.foundUser._id, token: data.encodedToken };
-        } catch (error) {
-            toast.error(error.response.data.errors[0]);
-            return thunkAPI.rejectWithValue({
-                errors: error.response.data.errors,
-                status: error.response.status,
-            });
-        }
+export const logInAction = createAsyncThunk<
+    AuthState,
+    { email: string; password: string },
+    thunkApiConfig
+>("auth/logIn", async (body, thunkAPI) => {
+    try {
+        const response = await axios.post("/api/auth/login", body);
+        const data = response.data;
+        localStorage.setItem(
+            "userData",
+            JSON.stringify({
+                userId: data.foundUser._id,
+                token: data.encodedToken,
+            })
+        );
+        toast.success("Log In Success");
+        return {
+            userId: data.foundUser._id,
+            token: data.encodedToken,
+            isLoggedIn: true,
+        };
+    } catch (error: any) {
+        toast.error(error.response.data.errors[0]);
+        return thunkAPI.rejectWithValue(error.response.data.errors[0]);
     }
-);
-export const signUpAction = createAsyncThunk(
-    "auth/signup",
-    async (body, thunkAPI) => {
-        console.log(body);
+});
+export const signUpAction = createAsyncThunk<
+    Omit<AuthState, "isLoggedIn">,
+    { email: string; password: string; name: string },
+    thunkApiConfig
+>("auth/signup", async (body, thunkAPI) => {
+    try {
         const { data } = await axios.post("/api/auth/signup", { ...body });
-        console.log(data);
 
         localStorage.setItem(
             "userData",
@@ -49,8 +65,11 @@ export const signUpAction = createAsyncThunk(
         );
         toast.success("Sign Up Succes!");
         return { userId: data.createdUser._id, token: data.encodedToken };
+    } catch (error: any) {
+        toast.error(error.response.data.errors[0]);
+        return thunkAPI.rejectWithValue(error.response.data.errors[0]);
     }
-);
+});
 
 export const logOutAction = createAsyncThunk("auth/logOut", async () => {
     localStorage.removeItem("userData");
@@ -58,9 +77,12 @@ export const logOutAction = createAsyncThunk("auth/logOut", async () => {
 
 const authSlice = createSlice({
     name: "auth",
-    initialState,
+    initialState: initialState as AuthState,
     reducers: {
-        restoreLogin(state, action) {
+        restoreLogin(
+            state,
+            action: PayloadAction<{ token: string; userId: string }>
+        ) {
             state.isLoggedIn = true;
             state.token = action.payload.token;
             state.userId = action.payload.userId;
