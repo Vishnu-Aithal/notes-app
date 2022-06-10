@@ -1,27 +1,23 @@
-import { useRef, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useRef, useEffect, useState, ChangeEvent } from "react";
 import {
-    addPriorityToFilter,
-    addTagToFilter,
     processFilter,
-    removePriorityFromFilter,
-    removeTagFromFilter,
     resetFilters,
-    setNewestFirstFilter,
-    setOldestFirstFilter,
     setSearchTerm,
 } from "store/filteredNotesSlice";
+import { useAppDispatch, useAppSelector } from "store/TypedExports";
 import { CloseIcon, FilterIcon } from "../../assets/Icons/Icons";
 import { DateSort } from "./DateSort";
 import { PrioritySort } from "./PrioritySort";
 import { SearchBar } from "./SearchBar";
 import { TagFilter } from "./TagFilter";
 
-export const Filter = () => {
+type CustomDiv = { timeOutId: NodeJS.Timeout } & HTMLDivElement;
+
+export const Filter: React.FC = () => {
     const [showFilter, setShowFilter] = useState(false);
-    const ref = useRef();
-    const dispatch = useDispatch();
-    const { filter, unFilteredNotes } = useSelector(
+    const ref = useRef<CustomDiv>(null!);
+    const dispatch = useAppDispatch();
+    const { filter, unFilteredNotes } = useAppSelector(
         (state) => state.filteredNotes
     );
 
@@ -35,7 +31,9 @@ export const Filter = () => {
         <div className="w-full text-center relative">
             <SearchBar
                 value={filter.searchTerm}
-                onChange={(e) => dispatch(setSearchTerm(e.target.value))}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                    dispatch(setSearchTerm(e.target.value))
+                }
             />
 
             <button
@@ -48,8 +46,8 @@ export const Filter = () => {
 
             <div
                 ref={ref}
-                tabIndex="-1"
-                onFocus={() => clearTimeout(ref.current.timeOutId)}
+                tabIndex={-1}
+                onFocus={() => clearTimeout(ref.current?.timeOutId)}
                 onBlur={() =>
                     (ref.current.timeOutId = setTimeout(
                         () => setShowFilter(false),

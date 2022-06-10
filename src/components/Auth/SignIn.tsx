@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { ChangeEvent, useState } from "react";
 import { ArrowRightIcon } from "../../assets/Icons/Icons";
 import { logInAction } from "store/authSlice";
 import { InputField } from "./InputField";
+import { useAppDispatch } from "store/TypedExports";
 
-export const SignIn = () => {
+export const SignIn: React.FC = () => {
     const demoSignIn = {
         email: "adarshbalika@gmail.com",
         password: "adarshBalika123",
@@ -13,7 +13,7 @@ export const SignIn = () => {
         email: "",
         password: "",
     });
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     return (
         <form
             onSubmit={(e) => {
@@ -25,7 +25,7 @@ export const SignIn = () => {
                 type="text"
                 label="Email"
                 value={formFields.email}
-                onChange={(e) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setFormFields((formFields) => ({
                         ...formFields,
                         email: e.target.value,
@@ -36,7 +36,7 @@ export const SignIn = () => {
                 type="password"
                 label="Password"
                 value={formFields.password}
-                onChange={(e) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setFormFields((formFields) => ({
                         ...formFields,
                         password: e.target.value,

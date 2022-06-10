@@ -1,9 +1,9 @@
 import { PlusIcon } from "assets/Icons/Icons";
-import { useDispatch } from "react-redux";
 import { toggleEditor } from "store/editorSlice";
+import { useAppDispatch } from "store/TypedExports";
 
-export const EditorToggleButton = () => {
-    const dispatch = useDispatch();
+export const EditorToggleButton: React.FC = () => {
+    const dispatch = useAppDispatch();
     return (
         <button
             onClick={() => dispatch(toggleEditor())}

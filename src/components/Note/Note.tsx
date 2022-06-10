@@ -2,14 +2,15 @@ import { Interweave } from "interweave";
 import { useLocation } from "react-router-dom";
 import { NoteHeader } from "./NoteHeader";
 import { NoteFooter } from "./NoteFooter";
-const Tag = ({ name }) => {
+import { NoteType } from "types/Note";
+const Tag: React.FC<{ name: string }> = ({ name }) => {
     return (
         <div className="rounded-full px-2 py-1 bg-gray-200 dark:bg-zinc-700 text-xs font-medium">
             {name}
         </div>
     );
 };
-export const Note = ({ note }) => {
+export const Note: React.FC<{ note: NoteType }> = ({ note }) => {
     const { pathname: place } = useLocation();
     const bgColor = {
         red: "bg-red-300",

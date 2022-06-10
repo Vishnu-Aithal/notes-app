@@ -6,7 +6,6 @@ import {
     UnArchiveIcon,
     UnTrashIcon,
 } from "assets/Icons/Icons";
-import { useDispatch } from "react-redux";
 import {
     addToArchives,
     addToTrash,
@@ -16,9 +15,15 @@ import {
     restoreFromTrash,
 } from "store/allNotesSlice";
 import { setEditNoteDetails } from "store/editorSlice";
+import { useAppDispatch } from "store/TypedExports";
+import { NoteType } from "types/Note";
 
-export const NoteFooter = ({ note, place }) => {
-    const dispatch = useDispatch();
+interface NoteFooterProps {
+    note: NoteType;
+    place: string;
+}
+export const NoteFooter: React.FC<NoteFooterProps> = ({ note, place }) => {
+    const dispatch = useAppDispatch();
     return (
         <div className="flex items-center mt-auto   ">
             {/* Time Stamp */}

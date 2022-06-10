@@ -1,6 +1,17 @@
+import { IconType } from "assets/Icons/Icons";
 import { NavLink } from "react-router-dom";
 
-export const SideBarNavLink = ({ to, Icon, name }) => {
+interface SideBarNavLinkProps {
+    to: string;
+    Icon: IconType;
+    name: string;
+}
+
+export const SideBarNavLink: React.FC<SideBarNavLinkProps> = ({
+    to,
+    Icon,
+    name,
+}) => {
     return (
         <NavLink
             to={to}

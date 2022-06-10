@@ -2,17 +2,20 @@ import { ContentLayout } from "components/Layout/ContentLayout";
 import { Filter } from "components/Filter/Filter";
 import { Note } from "components/Note/Note";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { resetFilters, setUnFilteredNotes } from "store/filteredNotesSlice";
+import { useAppDispatch, useAppSelector } from "store/TypedExports";
+import { NoteType } from "types/Note";
 
-export const NotesPage = () => {
-    const dispatch = useDispatch();
-    const notes = useSelector((state) => state.allNotes.notes);
-    const [pinNotes, setPinNotes] = useState({ pinned: [], unPinned: [] });
-    const { filteredNotes } = useSelector((state) => state.filteredNotes);
+export const NotesPage: React.FC = () => {
+    const dispatch = useAppDispatch();
+    const notes = useAppSelector((state) => state.allNotes.notes);
+    const [pinNotes, setPinNotes] = useState({
+        pinned: [] as NoteType[],
+        unPinned: [] as NoteType[],
+    });
+    const { filteredNotes } = useAppSelector((state) => state.filteredNotes);
     useEffect(() => {
         dispatch(setUnFilteredNotes(notes));
-        setPinNotes();
     }, [notes, dispatch]);
     useEffect(() => {
         dispatch(resetFilters());

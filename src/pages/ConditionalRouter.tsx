@@ -1,5 +1,4 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,11 +16,12 @@ import {
 import { ProtectedRoute, ProtectedAuth } from "./Protected";
 
 import { restoreLogin } from "store/authSlice";
+import { useAppDispatch, useAppSelector } from "store/TypedExports";
 
-export const ConditionalRouter = () => {
-    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-    const darkTheme = useSelector((state) => state.theme.darkTheme);
-    const dispatch = useDispatch();
+export const ConditionalRouter: React.FC = () => {
+    const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
+    const darkTheme = useAppSelector((state) => state.theme.darkTheme);
+    const dispatch = useAppDispatch();
     useEffect(() => {
         const userData = localStorage.getItem("userData");
         if (userData) {

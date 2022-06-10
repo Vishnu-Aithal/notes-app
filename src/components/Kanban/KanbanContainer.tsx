@@ -1,11 +1,19 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { ReactNode, useState } from "react";
 import { updateTodo } from "store/todosSlice";
+import { useAppDispatch } from "store/TypedExports";
 
-export const KanbanContainer = ({ children, heading }) => {
+interface KanBanContainerProps {
+    children: ReactNode;
+    heading: string;
+}
+
+export const KanbanContainer: React.FC<KanBanContainerProps> = ({
+    children,
+    heading,
+}) => {
     const [dragOver, setDragOver] = useState(false);
     const containerType = heading.toLowerCase();
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     return (
         <div
             id={heading}
@@ -21,8 +29,9 @@ export const KanbanContainer = ({ children, heading }) => {
             onDragLeave={(e) => {
                 e.preventDefault();
                 if (
-                    e?.relatedTarget?.closest(".kanban-container")?.id !==
-                    heading
+                    (e?.relatedTarget as HTMLElement)?.closest(
+                        ".kanban-container"
+                    )?.id !== heading
                 )
                     setDragOver(false);
             }}

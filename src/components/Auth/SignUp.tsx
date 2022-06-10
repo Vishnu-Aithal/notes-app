@@ -1,14 +1,14 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { ChangeEvent, useState } from "react";
 import { signUpAction } from "store/authSlice";
+import { useAppDispatch } from "store/TypedExports";
 import { InputField } from "./InputField";
-export const SignUp = () => {
+export const SignUp: React.FC = () => {
     const [formFields, setFormFields] = useState({
         name: "",
         email: "",
         password: "",
     });
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     return (
         <form
             onSubmit={(e) => {
@@ -20,7 +20,7 @@ export const SignUp = () => {
                 type="text"
                 label="Name"
                 value={formFields.name}
-                onChange={(e) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setFormFields((formFields) => ({
                         ...formFields,
                         name: e.target.value,
@@ -31,7 +31,7 @@ export const SignUp = () => {
                 type="text"
                 label="Email"
                 value={formFields.email}
-                onChange={(e) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setFormFields((formFields) => ({
                         ...formFields,
                         email: e.target.value,
@@ -42,7 +42,7 @@ export const SignUp = () => {
                 type="password"
                 label="Password"
                 value={formFields.password}
-                onChange={(e) =>
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setFormFields((formFields) => ({
                         ...formFields,
                         password: e.target.value,

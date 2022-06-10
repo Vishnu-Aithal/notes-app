@@ -1,11 +1,12 @@
 import { PlusIcon } from "assets/Icons/Icons";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
 import { addNewTodo } from "store/todosSlice";
+import { useAppDispatch } from "store/TypedExports";
+import { TodoType } from "types/Todo";
 
-export const NewTodo = ({ todos }) => {
+export const NewTodo: React.FC<{ todos: TodoType[] }> = ({ todos }) => {
     const [newTodo, setNewTodo] = useState("");
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     return (
         <div className="flex">
             <input
@@ -17,7 +18,7 @@ export const NewTodo = ({ todos }) => {
             <button
                 className="disabled:opacity-50"
                 disabled={
-                    !newTodo || todos.find((todo) => todo.name === newTodo)
+                    !newTodo || !!todos.find((todo) => todo.name === newTodo)
                 }
                 onClick={() => {
                     dispatch(addNewTodo({ name: newTodo, status: "todo" }));

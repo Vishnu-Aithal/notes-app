@@ -1,12 +1,12 @@
-import { useDispatch, useSelector } from "react-redux";
 import {
     setNewestFirstFilter,
     setOldestFirstFilter,
 } from "store/filteredNotesSlice";
+import { useAppDispatch, useAppSelector } from "store/TypedExports";
 
-export const DateSort = () => {
-    const dispatch = useDispatch();
-    const filter = useSelector((state) => state.filteredNotes.filter);
+export const DateSort: React.FC = () => {
+    const dispatch = useAppDispatch();
+    const filter = useAppSelector((state) => state.filteredNotes.filter);
     return (
         <div className="p-4 border-b-1 border-gray-200 dark:border-zinc-700">
             <p className="font-bold mb-2">Sort By</p>

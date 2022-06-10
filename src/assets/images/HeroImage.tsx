@@ -1,4 +1,4 @@
-export const HeroImage = ({ className }) => {
+export const HeroImage: React.FC<{ className: string }> = ({ className }) => {
     return (
         <svg
             className={className}

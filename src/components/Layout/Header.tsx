@@ -1,12 +1,12 @@
 import { LogOutIcon, NoteIcon } from "../../assets/Icons/Icons";
 import { Link } from "react-router-dom";
 import { ThemeSwitcher } from "./ThemeSwitcher";
-import { useDispatch } from "react-redux";
 import { toggleDarkTheme } from "store/themeSlice";
 import { logOutAction } from "store/authSlice";
+import { useAppDispatch } from "store/TypedExports";
 
-export const Header = () => {
-    const dispatch = useDispatch();
+export const Header: React.FC = () => {
+    const dispatch = useAppDispatch();
     const setDarkTheme = () => dispatch(toggleDarkTheme());
     return (
         <header className="flex p-3 items-center h-fit border-b-2 text-gray-600 dark:bg-zinc-800 dark:text-slate-300 dark:border-zinc-700">

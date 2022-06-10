@@ -2,17 +2,18 @@ import { KanbanContainer } from "components/Kanban/KanbanContainer";
 import { NewTodo } from "components/Kanban/NewTodo";
 import { Todo } from "components/Kanban/Todo";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { getAllTodos } from "store/todosSlice";
+import { useAppDispatch, useAppSelector } from "store/TypedExports";
+import { TodoType } from "types/Todo";
 
-export const KanbanPage = () => {
-    const todos = useSelector((state) => state.todos);
+export const KanbanPage: React.FC = () => {
+    const todos = useAppSelector((state) => state.todos);
     const [classifiedTodos, setClassifiedTodos] = useState({
-        todo: [],
-        doing: [],
-        done: [],
+        todo: [] as TodoType[],
+        doing: [] as TodoType[],
+        done: [] as TodoType[],
     });
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(getAllTodos());
     }, [dispatch]);

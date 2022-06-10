@@ -1,23 +1,23 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { addTagToFilter, removeTagFromFilter } from "store/filteredNotesSlice";
+import { useAppDispatch, useAppSelector } from "store/TypedExports";
 
-export const TagFilter = () => {
-    const dispatch = useDispatch();
-    const { filter, unFilteredNotes } = useSelector(
+export const TagFilter: React.FC = () => {
+    const dispatch = useAppDispatch();
+    const { filter, unFilteredNotes } = useAppSelector(
         (state) => state.filteredNotes
     );
-    const [tags, setTags] = useState([]);
+    const [tags, setTags] = useState<string[]>([]);
     useEffect(() => {
         const getTags = () => {
             let tags = unFilteredNotes.reduce(
                 (tags, note) => [...tags, ...note.tags],
-                []
+                [] as string[]
             );
             tags = Array.from(new Set(tags));
             return tags;
         };
-        setTags(getTags(unFilteredNotes));
+        setTags(getTags());
     }, [unFilteredNotes, setTags]);
     return (
         <div className="p-4 border-b-1 border-gray-200 dark:border-zinc-700">

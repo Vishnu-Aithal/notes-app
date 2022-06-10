@@ -1,13 +1,13 @@
 import { ThemeSwitcher } from "components/Layout/ThemeSwitcher";
 import { SignIn } from "components/Auth/SignIn";
-import { useDispatch, useSelector } from "react-redux";
 import { toggleDarkTheme } from "store/themeSlice";
 import { useLocation } from "react-router-dom";
 import { SignUp } from "components/Auth/SignUp";
+import { useAppDispatch, useAppSelector } from "store/TypedExports";
 
-export const AuthPage = () => {
-    const darkTheme = useSelector((state) => state.theme.darkTheme);
-    const dispatch = useDispatch();
+export const AuthPage: React.FC = () => {
+    const darkTheme = useAppSelector((state) => state.theme.darkTheme);
+    const dispatch = useAppDispatch();
     const { pathname } = useLocation();
     const setDarkTheme = () => dispatch(toggleDarkTheme());
     return (

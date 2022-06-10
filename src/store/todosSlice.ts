@@ -33,7 +33,7 @@ export const getAllTodos = createAsyncThunk<
 
 export const addNewTodo = createAsyncThunk<
     { todos: TodoType[] },
-    undefined,
+    Omit<TodoType, "_id">,
     thunkApiConfig
 >("todos/addNewTodo", async (todoDetails, thunkApi) => {
     try {

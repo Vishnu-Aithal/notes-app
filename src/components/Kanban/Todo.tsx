@@ -4,13 +4,14 @@ import {
     PencilIcon,
 } from "assets/Icons/Icons";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 import { deleteTodo, updateTodo } from "store/todosSlice";
+import { useAppDispatch, useAppSelector } from "store/TypedExports";
+import { TodoType } from "types/Todo";
 
-export const Todo = ({ todoDetails }) => {
+export const Todo: React.FC<{ todoDetails: TodoType }> = ({ todoDetails }) => {
     const [edit, setEdit] = useState({ mode: false, name: "" });
-    const dispatch = useDispatch();
-    const todos = useSelector((state) => state.todos);
+    const dispatch = useAppDispatch();
+    const todos = useAppSelector((state) => state.todos);
     return (
         <div
             draggable
@@ -33,7 +34,9 @@ export const Todo = ({ todoDetails }) => {
                         }
                     />
                     <button
-                        disabled={todos.find((todo) => todo.name === edit.name)}
+                        disabled={
+                            !!todos.find((todo) => todo.name === edit.name)
+                        }
                         className="disabled:opacity-20"
                         onClick={() => {
                             dispatch(

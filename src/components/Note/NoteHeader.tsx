@@ -1,9 +1,15 @@
 import { PinIcon } from "assets/Icons/Icons";
-import { useDispatch } from "react-redux";
 import { updateNote } from "store/allNotesSlice";
+import { useAppDispatch } from "store/TypedExports";
+import { NoteType } from "types/Note";
 
-export const NoteHeader = ({ note, place }) => {
-    const dispatch = useDispatch();
+interface NoteHeaderProps {
+    note: NoteType;
+    place: string;
+}
+
+export const NoteHeader: React.FC<NoteHeaderProps> = ({ note, place }) => {
+    const dispatch = useAppDispatch();
     return (
         <div className="flex">
             <h1 className="text-xl font-semibold">{note.heading}</h1>

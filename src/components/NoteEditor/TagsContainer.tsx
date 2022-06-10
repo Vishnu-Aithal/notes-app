@@ -1,9 +1,20 @@
 import { PlusIcon } from "assets/Icons/Icons";
+import { SetStateAction } from "react";
 import { useDispatch } from "react-redux";
-import { addTag } from "store/editorSlice";
+import { addTag, EditorState } from "store/editorSlice";
 import { Tag } from "./Tag";
 
-export const TagContainer = ({ noteDetails, newTag, setNewTag }) => {
+interface TagContainerProps {
+    noteDetails: EditorState;
+    newTag: string;
+    setNewTag: React.Dispatch<SetStateAction<string>>;
+}
+
+export const TagContainer: React.FC<TagContainerProps> = ({
+    noteDetails,
+    newTag,
+    setNewTag,
+}) => {
     const dispatch = useDispatch();
     return (
         <div className="flex flex-wrap items-center mt-2 gap-1">

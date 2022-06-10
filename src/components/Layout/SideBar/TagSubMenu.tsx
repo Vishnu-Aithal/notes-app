@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { TagIcon } from "assets/Icons/Icons.js";
+import { TagIcon } from "assets/Icons/Icons";
 import { SideBarNavLink } from "./SideBarNavLink";
 
-export const TagSubMenu = ({ tags }) => {
+export const TagSubMenu: React.FC<{ tags: string[] }> = ({ tags }) => {
     const [subMenuCollapse, setSubMenuCollapse] = useState(true);
     return (
         <>

@@ -1,19 +1,21 @@
 import { useEffect, useRef, useState, useMemo } from "react";
 import JoditEditor from "jodit-react";
-import { useDispatch, useSelector } from "react-redux";
 import { hideEditor, setBody, setHeading } from "store/editorSlice";
 import { TagContainer } from "./TagsContainer";
 import { PrioritySelector } from "./PrioritySelector";
 import { ColorSelector } from "./ColorSelector";
 import { ActionButtons } from "./ActionButtons";
 import { EditorToggleButton } from "./EditorToggleButton";
+import { useAppDispatch, useAppSelector } from "store/TypedExports";
 
-export const NoteEditor = () => {
-    const darkTheme = useSelector((state) => state.theme.darkTheme);
-    const noteDetails = useSelector((state) => state.editor);
+type CustomDiv = { timeOutId: NodeJS.Timeout } & HTMLDivElement;
+
+export const NoteEditor: React.FC = () => {
+    const darkTheme = useAppSelector((state) => state.theme.darkTheme);
+    const noteDetails = useAppSelector((state) => state.editor);
     const [newTag, setNewTag] = useState("");
-    const editor = useRef(null);
-    const dispatch = useDispatch();
+    const editor = useRef<CustomDiv>(null!);
+    const dispatch = useAppDispatch();
     const config = useMemo(
         () => ({
             readonly: false,
@@ -58,8 +60,7 @@ export const NoteEditor = () => {
                 <JoditEditor
                     value={noteDetails.body}
                     config={config}
-                    tabIndex={1}
-                    onBlur={(newContent) => {}}
+                    onBlur={(_newContent) => {}}
                     onChange={(newContent) => {
                         dispatch(setBody(newContent));
                     }}
@@ -82,7 +83,6 @@ export const NoteEditor = () => {
                 {/* Action Button */}
                 <ActionButtons
                     noteDetails={noteDetails}
-                    newTag={newTag}
                     setNewTag={setNewTag}
                 />
             </div>

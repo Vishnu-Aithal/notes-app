@@ -1,4 +1,6 @@
-export const MenuIcon = ({ className }) => {
+export type IconType = React.FC<{ className: string }>;
+
+export const MenuIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -15,7 +17,7 @@ export const MenuIcon = ({ className }) => {
         </svg>
     );
 };
-export const PlusIcon = ({ className }) => {
+export const PlusIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -30,7 +32,7 @@ export const PlusIcon = ({ className }) => {
         </svg>
     );
 };
-export const NoteIcon = ({ className }) => {
+export const NoteIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +49,7 @@ export const NoteIcon = ({ className }) => {
     );
 };
 
-export const LogOutIcon = ({ className }) => {
+export const LogOutIcon: IconType = ({ className }) => {
     return (
         <svg
             className={className}
@@ -68,7 +70,7 @@ export const LogOutIcon = ({ className }) => {
     );
 };
 
-export const PencilIcon = ({ className }) => {
+export const PencilIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +88,7 @@ export const PencilIcon = ({ className }) => {
     );
 };
 
-export const ArchiveIcon = ({ className }) => {
+export const ArchiveIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -103,7 +105,7 @@ export const ArchiveIcon = ({ className }) => {
         </svg>
     );
 };
-export const UnArchiveIcon = ({ className }) => {
+export const UnArchiveIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -124,7 +126,7 @@ export const UnArchiveIcon = ({ className }) => {
     );
 };
 
-export const TagIcon = ({ className }) => {
+export const TagIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -141,7 +143,7 @@ export const TagIcon = ({ className }) => {
         </svg>
     );
 };
-export const TrashIcon = ({ className }) => {
+export const TrashIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -158,7 +160,7 @@ export const TrashIcon = ({ className }) => {
         </svg>
     );
 };
-export const DeleteTrashIcon = ({ className }) => {
+export const DeleteTrashIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -171,7 +173,7 @@ export const DeleteTrashIcon = ({ className }) => {
         </svg>
     );
 };
-export const UnTrashIcon = ({ className }) => {
+export const UnTrashIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -185,7 +187,7 @@ export const UnTrashIcon = ({ className }) => {
     );
 };
 
-export const UserIcon = ({ className }) => {
+export const UserIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -202,7 +204,7 @@ export const UserIcon = ({ className }) => {
         </svg>
     );
 };
-export const KanbanIcon = ({ className }) => {
+export const KanbanIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -215,7 +217,7 @@ export const KanbanIcon = ({ className }) => {
     );
 };
 
-export const PinIcon = ({ className }) => {
+export const PinIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -227,7 +229,7 @@ export const PinIcon = ({ className }) => {
     );
 };
 
-export const ColorSwatchIcon = ({ className }) => {
+export const ColorSwatchIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -245,7 +247,7 @@ export const ColorSwatchIcon = ({ className }) => {
     );
 };
 
-export const MoonIcon = ({ className }) => {
+export const MoonIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -263,7 +265,7 @@ export const MoonIcon = ({ className }) => {
     );
 };
 
-export const OpenEyeIcon = ({ className }) => {
+export const OpenEyeIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -285,7 +287,7 @@ export const OpenEyeIcon = ({ className }) => {
         </svg>
     );
 };
-export const ClosedEyeIcon = ({ className }) => {
+export const ClosedEyeIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -302,7 +304,7 @@ export const ClosedEyeIcon = ({ className }) => {
         </svg>
     );
 };
-export const ArrowRightIcon = ({ className }) => {
+export const ArrowRightIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -319,7 +321,7 @@ export const ArrowRightIcon = ({ className }) => {
         </svg>
     );
 };
-export const FilterIcon = ({ className }) => {
+export const FilterIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -336,7 +338,7 @@ export const FilterIcon = ({ className }) => {
         </svg>
     );
 };
-export const CloseIcon = ({ className }) => {
+export const CloseIcon: IconType = ({ className }) => {
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"

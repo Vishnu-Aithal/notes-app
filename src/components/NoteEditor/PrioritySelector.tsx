@@ -1,12 +1,17 @@
 import { useDispatch } from "react-redux";
-import { setPriority } from "store/editorSlice";
+import { EditorState, setPriority } from "store/editorSlice";
+import { NotePriority } from "types/Note";
 
-export const PrioritySelector = ({ noteDetails }) => {
+export const PrioritySelector: React.FC<{ noteDetails: EditorState }> = ({
+    noteDetails,
+}) => {
     const dispatch = useDispatch();
     return (
         <select
             value={noteDetails.priority}
-            onChange={(e) => dispatch(setPriority(e.target.value))}
+            onChange={(e) =>
+                dispatch(setPriority(e.target.value as NotePriority))
+            }
             className="ml-2 text-xs font-semibold bg-inherit"
             name="priority"
             id="">

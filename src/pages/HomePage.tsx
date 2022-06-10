@@ -1,11 +1,12 @@
 import { HeroImage } from "assets/images/HeroImage";
 import { ThemeSwitcher } from "components/Layout/ThemeSwitcher";
-import { useDispatch, useSelector } from "react-redux";
 import { toggleDarkTheme } from "store/themeSlice";
 import { Link } from "react-router-dom";
-export const HomePage = () => {
-    const darkTheme = useSelector((state) => state.theme.darkTheme);
-    const dispatch = useDispatch();
+import { useAppDispatch, useAppSelector } from "store/TypedExports";
+
+export const HomePage: React.FC = () => {
+    const darkTheme = useAppSelector((state) => state.theme.darkTheme);
+    const dispatch = useAppDispatch();
     const setDarkTheme = () => dispatch(toggleDarkTheme());
     return (
         <div className={darkTheme ? "dark" : ""}>

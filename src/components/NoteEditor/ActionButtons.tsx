@@ -1,9 +1,18 @@
-import { useDispatch } from "react-redux";
+import { SetStateAction } from "react";
 import { addNewNote, updateNote } from "store/allNotesSlice";
-import { resetEditor } from "store/editorSlice";
+import { EditorState, resetEditor } from "store/editorSlice";
+import { useAppDispatch } from "store/TypedExports";
 
-export const ActionButtons = ({ noteDetails, newTag, setNewTag }) => {
-    const dispatch = useDispatch();
+interface ActionButtonsProps {
+    noteDetails: EditorState;
+    setNewTag: React.Dispatch<SetStateAction<string>>;
+}
+
+export const ActionButtons: React.FC<ActionButtonsProps> = ({
+    noteDetails,
+    setNewTag,
+}) => {
+    const dispatch = useAppDispatch();
     const prepareNewNoteData = () => ({
         heading: noteDetails.heading,
         body: noteDetails.body,
