@@ -1,13 +1,74 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body *::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+}
+body *::-webkit-scrollbar-thumb {
+    background-color: rgb(75 85 99);
+}
+body *::-webkit-scrollbar-track {
+    background-color: rgb(155 160 189);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body * {
+    transition-property: color, background-color, transform, opacity;
+    transition-timing: ease;
+    transition-duration: 150ms;
+}
+
+.jodit-status-bar {
+    height: min-content !important;
+}
+
+.jodit-add-new-line {
+    display: none !important;
+}
+
+.jodit_theme_dark {
+    --jd-color-background-default: rgb(39 39 42);
+    --jd-color-border: rgb(63 63 70);
+    --jd-color-panel: rgb(39 39 42);
+    --jd-color-icon: rgb(203 213 225);
+}
+
+.jodit_theme_dark.jodit-container {
+    background-color: rgb(39 39 42);
+    border-color: rgb(63 63 70) !important;
+}
+
+.jodit_theme_dark .jodit-toolbar__box:not(:empty) {
+    background-color: rgb(39 39 42) !important;
+    border-color: rgb(63 63 70) !important;
+}
+.jodit_theme_dark .jodit-toolbar-button {
+    border-color: rgb(63 63 70) !important;
+}
+.jodit_theme_dark .jodit-ui-separator {
+    border-color: rgb(63 63 70) !important;
+}
+
+.jodit_theme_dark .jodit-wysiwyg {
+    background-color: rgb(39 39 42) !important;
+}
+.jodit_theme_dark .jodit-status-bar {
+    border-color: rgb(63 63 70) !important;
+    background-color: rgb(39 39 42) !important;
+}
+
+.jodit_theme_dark .jodit-toolbar-editor-collection_mode_horizontal:after {
+    background-color: rgb(39 39 42) !important;
+}
+.jodit_theme_dark .jodit-toolbar-editor-collection_mode_horizontal:after {
+    background-color: rgb(39 39 42) !important;
+}
+
+.jodit-toolbar-editor-collection_size_small.jodit-toolbar-editor-collection_mode_horizontal {
+    background-image: repeating-linear-gradient(
+        transparent 0,
+        transparent 31px,
+        rgb(63 63 70) 32px
+    ) !important;
 }
