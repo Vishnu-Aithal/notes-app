@@ -1,3 +1,4 @@
+import { CalenderIcon } from "assets/Icons/Icons";
 import { ContentLayout } from "components/Layout/ContentLayout";
 import { Note } from "components/Note/Note";
 import { useEffect, useState } from "react";
@@ -44,14 +45,26 @@ export const TagsPage: React.FC = () => {
     }, [notes, tagUrl]);
     return (
         <ContentLayout>
-            <div className="w-full p-2 flex flex-wrap gap-2">
-                {tags.map((tag) => (
-                    <TagLink key={tag} tag={tag} />
-                ))}
-            </div>
-            {notesToDisplay.map((note) => (
-                <Note key={note._id} note={note} />
-            ))}
+            {notes.length === 0 && (
+                <>
+                    <h1 className="w-full text-center text-lg mt-5 font-bold">
+                        No Notes Here! Create New Notes.
+                    </h1>
+                    <CalenderIcon className="h-1/2 w-1/2 m-auto opacity-50" />
+                </>
+            )}
+            {notes.length > 0 && (
+                <>
+                    <div className="w-full p-2 flex flex-wrap gap-2">
+                        {tags.map((tag) => (
+                            <TagLink key={tag} tag={tag} />
+                        ))}
+                    </div>
+                    {notesToDisplay.map((note) => (
+                        <Note key={note._id} note={note} />
+                    ))}
+                </>
+            )}
         </ContentLayout>
     );
 };

@@ -17,7 +17,7 @@ export const KanbanContainer: React.FC<KanBanContainerProps> = ({
     return (
         <div
             id={heading}
-            className={`flex flex-col gap-2 sm:w-1/3 w-full p-6 kanban-container border sm:border-0 ${
+            className={`flex flex-col gap-2 lg:w-1/3 w-full p-6 kanban-container border lg:border-0 ${
                 dragOver ? "bg-gray-100 dark:bg-zinc-700" : ""
             }`}
             onDragOver={(e) => {

@@ -1,7 +1,9 @@
 import { ChangeEvent, useState } from "react";
 import { signUpAction } from "store/authSlice";
 import { useAppDispatch } from "store/TypedExports";
+import { FormActionBtn } from "./FormActionBtn";
 import { InputField } from "./InputField";
+import { SignInDemo } from "./SignInDemo";
 export const SignUp: React.FC = () => {
     const [formFields, setFormFields] = useState({
         name: "",
@@ -9,6 +11,7 @@ export const SignUp: React.FC = () => {
         password: "",
     });
     const dispatch = useAppDispatch();
+
     return (
         <form
             onSubmit={(e) => {
@@ -28,7 +31,7 @@ export const SignUp: React.FC = () => {
                 }
             />
             <InputField
-                type="text"
+                type="email"
                 label="Email"
                 value={formFields.email}
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -41,6 +44,8 @@ export const SignUp: React.FC = () => {
             <InputField
                 type="password"
                 label="Password"
+                pattern=".{8,}"
+                title="8 characters minimum"
                 value={formFields.password}
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
                     setFormFields((formFields) => ({
@@ -49,11 +54,14 @@ export const SignUp: React.FC = () => {
                     }))
                 }
             />
-            <button
+            <FormActionBtn
+                name="Sign Up"
                 type="submit"
-                className="px-4 py-2 bg-amber-300 rounded-md mt-6 text-zinc-700 font-bold hover:scale-105">
-                Sign Up
-            </button>
+                disabled={Object.values(formFields).some(
+                    (value) => value === ""
+                )}
+            />
+            <SignInDemo />
         </form>
     );
 };

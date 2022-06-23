@@ -20,7 +20,7 @@ export const SideBar: React.FC = () => {
                 [] as string[]
             );
             tags = Array.from(new Set(tags));
-            return ["ALL", ...tags];
+            return notes.length > 0 ? ["ALL", ...tags] : [];
         };
         setTags(getTags);
     }, [notes, setTags]);

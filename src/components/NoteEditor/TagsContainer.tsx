@@ -28,7 +28,7 @@ export const TagContainer: React.FC<TagContainerProps> = ({
             {newTag && !noteDetails.tags.includes(newTag) && (
                 <button
                     onClick={() => {
-                        dispatch(addTag(newTag));
+                        dispatch(addTag(newTag.replaceAll(" ", "-")));
                         setNewTag("");
                     }}
                     className="p-1 hover:bg-gray-200 rounded-full">

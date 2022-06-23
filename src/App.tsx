@@ -5,13 +5,17 @@ import { NoteEditor } from "components/NoteEditor/NoteEditor";
 import { useEffect } from "react";
 import { getAllNotes } from "store/allNotesSlice";
 import { useAppDispatch, useAppSelector } from "store/TypedExports";
+import { getAllTodos } from "store/todosSlice";
 
 function App() {
     const darkTheme = useAppSelector((state) => state.theme.darkTheme);
     const dispatch = useAppDispatch();
     const isLoggedIn = useAppSelector((state) => state.auth.isLoggedIn);
     useEffect(() => {
-        if (isLoggedIn) dispatch(getAllNotes());
+        if (isLoggedIn) {
+            dispatch(getAllNotes());
+            dispatch(getAllTodos());
+        }
     }, [isLoggedIn, dispatch]);
     return (
         <div

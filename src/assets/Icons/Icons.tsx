@@ -1,5 +1,39 @@
 export type IconType = React.FC<{ className: string }>;
 
+export const ArrowIcon: IconType = ({ className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}>
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M9 5l7 7-7 7"
+            />
+        </svg>
+    );
+};
+export const CalenderIcon: IconType = ({ className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={0.5}>
+            <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+        </svg>
+    );
+};
 export const MenuIcon: IconType = ({ className }) => {
     return (
         <svg
@@ -27,6 +61,21 @@ export const PlusIcon: IconType = ({ className }) => {
             <path
                 fillRule="evenodd"
                 d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+                clipRule="evenodd"
+            />
+        </svg>
+    );
+};
+export const MinusIcon: IconType = ({ className }) => {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className={className}
+            viewBox="0 0 20 20"
+            fill="currentColor">
+            <path
+                fillRule="evenodd"
+                d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
                 clipRule="evenodd"
             />
         </svg>

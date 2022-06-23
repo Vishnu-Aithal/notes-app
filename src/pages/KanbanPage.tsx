@@ -1,9 +1,9 @@
+import { CalenderIcon } from "assets/Icons/Icons";
 import { KanbanContainer } from "components/Kanban/KanbanContainer";
 import { NewTodo } from "components/Kanban/NewTodo";
 import { Todo } from "components/Kanban/Todo";
 import { useEffect, useState } from "react";
-import { getAllTodos } from "store/todosSlice";
-import { useAppDispatch, useAppSelector } from "store/TypedExports";
+import { useAppSelector } from "store/TypedExports";
 import { TodoType } from "types/Todo";
 
 export const KanbanPage: React.FC = () => {
@@ -13,10 +13,6 @@ export const KanbanPage: React.FC = () => {
         doing: [] as TodoType[],
         done: [] as TodoType[],
     });
-    const dispatch = useAppDispatch();
-    useEffect(() => {
-        dispatch(getAllTodos());
-    }, [dispatch]);
     useEffect(() => {
         const classifiedTodos = {
             todo: todos.filter((todo) => todo.status === "todo"),
@@ -26,23 +22,36 @@ export const KanbanPage: React.FC = () => {
         setClassifiedTodos(classifiedTodos);
     }, [todos]);
     return (
-        <div className="flex sm:flex-row flex-col gap-2 sm:gap-0 w-full p-6 dark:text-slate-300 sm:divide-x-2 dark:divide-zinc-600 h-fit min-h-full">
+        <div className="flex lg:flex-row flex-col gap-2 sm:gap-0 w-full p-6 dark:text-slate-300 lg:divide-x-2 dark:divide-zinc-600 h-fit min-h-full">
+            {todos.length === 0 && (
+                <div className="w-full">
+                    <h1 className="w-full text-center text-lg mt-5 font-bold">
+                        No Todos Here! Create New Todos.
+                    </h1>
+                    <CalenderIcon className="h-1/2 w-1/2 m-auto opacity-50" />
+                </div>
+            )}
             <KanbanContainer heading={"TODO"}>
                 <NewTodo todos={todos} />
                 {classifiedTodos.todo.map((todo) => (
                     <Todo key={todo._id} todoDetails={todo} />
                 ))}
             </KanbanContainer>
-            <KanbanContainer heading={"DOING"}>
-                {classifiedTodos.doing.map((todo) => (
-                    <Todo key={todo._id} todoDetails={todo} />
-                ))}
-            </KanbanContainer>
-            <KanbanContainer heading={"DONE"}>
-                {classifiedTodos.done.map((todo) => (
-                    <Todo key={todo._id} todoDetails={todo} />
-                ))}
-            </KanbanContainer>
+            {todos.length > 0 && (
+                <>
+                    {" "}
+                    <KanbanContainer heading={"DOING"}>
+                        {classifiedTodos.doing.map((todo) => (
+                            <Todo key={todo._id} todoDetails={todo} />
+                        ))}
+                    </KanbanContainer>
+                    <KanbanContainer heading={"DONE"}>
+                        {classifiedTodos.done.map((todo) => (
+                            <Todo key={todo._id} todoDetails={todo} />
+                        ))}
+                    </KanbanContainer>
+                </>
+            )}
         </div>
     );
 };

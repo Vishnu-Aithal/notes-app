@@ -39,6 +39,7 @@ export const signupHandler = function (schema, request) {
             notes: [],
             archives: [],
             trash: [],
+            todos: [],
         };
         const createdUser = schema.users.create(newUser);
         const encodedToken = sign(

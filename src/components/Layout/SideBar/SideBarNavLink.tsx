@@ -5,12 +5,14 @@ interface SideBarNavLinkProps {
     to: string;
     Icon: IconType;
     name: string;
+    small?: true;
 }
 
 export const SideBarNavLink: React.FC<SideBarNavLinkProps> = ({
     to,
     Icon,
     name,
+    small,
 }) => {
     return (
         <NavLink
@@ -23,10 +25,10 @@ export const SideBarNavLink: React.FC<SideBarNavLinkProps> = ({
                 }`
             }>
             <Icon
-                className={
-                    "sm:w-6 sm:h-6 h-8 w-8 ml-3 mr-5 group-hover:scale-110 transition-transform stroke-2"
-                }
-            />{" "}
+                className={`${
+                    small ? "sm:w-3 sm:h-3 h-4 w-4" : "sm:w-6 sm:h-6 h-6 w-6"
+                } ml-0 pr-1 sm:ml-3 mr-5 group-hover:scale-110 transition-transform stroke-2 flex-shrink-0`}
+            />
             <p className="group-hover:translate-x-1 transition-transform w-0 sm:w-44 overflow-hidden">
                 {name}
             </p>

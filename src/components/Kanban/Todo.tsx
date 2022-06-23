@@ -3,7 +3,7 @@ import {
     DeleteTrashIcon,
     PencilIcon,
 } from "assets/Icons/Icons";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { deleteTodo, updateTodo } from "store/todosSlice";
 import { useAppDispatch, useAppSelector } from "store/TypedExports";
 import { TodoType } from "types/Todo";
@@ -12,6 +12,7 @@ export const Todo: React.FC<{ todoDetails: TodoType }> = ({ todoDetails }) => {
     const [edit, setEdit] = useState({ mode: false, name: "" });
     const dispatch = useAppDispatch();
     const todos = useAppSelector((state) => state.todos);
+    const inputRef = useRef<HTMLInputElement | null>(null);
     return (
         <div
             draggable
@@ -23,9 +24,16 @@ export const Todo: React.FC<{ todoDetails: TodoType }> = ({ todoDetails }) => {
             {edit.mode ? (
                 <div className="flex">
                     <input
+                        ref={inputRef}
                         className="dark:bg-zinc-700 w-full rounded-md p-2 mr-1 outline-none border-b"
                         type="text"
                         value={edit.name}
+                        onBlur={() =>
+                            setTimeout(
+                                () => setEdit({ mode: false, name: "" }),
+                                100
+                            )
+                        }
                         onChange={(e) =>
                             setEdit((edit) => ({
                                 ...edit,
@@ -42,7 +50,6 @@ export const Todo: React.FC<{ todoDetails: TodoType }> = ({ todoDetails }) => {
                             dispatch(
                                 updateTodo({ ...todoDetails, name: edit.name })
                             );
-                            setEdit({ mode: false, name: "" });
                         }}>
                         <ArrowRightIcon className={"h-5 w-5"} />
                     </button>
@@ -56,6 +63,9 @@ export const Todo: React.FC<{ todoDetails: TodoType }> = ({ todoDetails }) => {
                     onClick={() => {
                         if (!edit.mode) {
                             setEdit({ mode: true, name: todoDetails.name });
+                            console.log(inputRef.current);
+                            // inputRef.current?.focus();
+                            setTimeout(() => inputRef.current?.focus(), 10);
                         } else {
                             setEdit({ mode: false, name: "" });
                         }

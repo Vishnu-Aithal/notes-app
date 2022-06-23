@@ -108,7 +108,10 @@ const filteredNotesSlice = createSlice({
             state.unFilteredNotes = action.payload;
         },
         resetFilters(state) {
-            return { ...initialState, unFilteredNotes: state.unFilteredNotes };
+            return {
+                ...initialState,
+                unFilteredNotes: [...state.unFilteredNotes],
+            };
         },
     },
     extraReducers: (builder) => {

@@ -55,14 +55,6 @@ export const signUpAction = createAsyncThunk<
 >("auth/signup", async (body, thunkAPI) => {
     try {
         const { data } = await axios.post("/api/auth/signup", { ...body });
-
-        localStorage.setItem(
-            "userData",
-            JSON.stringify({
-                userId: data.createdUser._id,
-                token: data.encodedToken,
-            })
-        );
         toast.success("Sign Up Succes!");
         return { userId: data.createdUser._id, token: data.encodedToken };
     } catch (error: any) {
