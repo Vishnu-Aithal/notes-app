@@ -21,7 +21,10 @@ export const getAllTodos = createAsyncThunk<
 >("todos/getAllTodos", async (_arg, thunkApi) => {
     try {
         const config = getConfig(thunkApi);
-        const response = await axios.get("/api/todos", config);
+        const response = await axios.get(
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/todos`,
+            config
+        );
         toast.success("Todos Fetched Successfully");
         return response.data;
     } catch (error: any) {
@@ -38,7 +41,7 @@ export const addNewTodo = createAsyncThunk<
 >("todos/addNewTodo", async (todoDetails, thunkApi) => {
     try {
         const response = await axios.post(
-            "/api/todos",
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/todos`,
             { todo: todoDetails },
             getConfig(thunkApi)
         );
@@ -58,7 +61,7 @@ export const updateTodo = createAsyncThunk<
 >("todos/updateTodo", async (todoDetails, thunkApi) => {
     try {
         const response = await axios.post(
-            `/api/todos/${todoDetails._id}`,
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/todos/${todoDetails._id}`,
             { todo: todoDetails },
             getConfig(thunkApi)
         );
@@ -78,7 +81,7 @@ export const deleteTodo = createAsyncThunk<
 >("todos/deleteTodo", async (todoDetails, thunkApi) => {
     try {
         const response = await axios.delete(
-            `/api/todos/${todoDetails._id}`,
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/todos/${todoDetails._id}`,
 
             getConfig(thunkApi)
         );
