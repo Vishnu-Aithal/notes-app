@@ -34,7 +34,7 @@ export const logInAction = createAsyncThunk<
         );
         const data = response.data;
         localStorage.setItem(
-            "userData",
+            "user",
             JSON.stringify({
                 userId: data.foundUser._id,
                 token: data.encodedToken,
@@ -70,7 +70,7 @@ export const signUpAction = createAsyncThunk<
 });
 
 export const logOutAction = createAsyncThunk("auth/logOut", async () => {
-    localStorage.removeItem("userData");
+    localStorage.removeItem("user");
 });
 
 const authSlice = createSlice({

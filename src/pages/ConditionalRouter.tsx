@@ -23,7 +23,7 @@ export const ConditionalRouter: React.FC = () => {
     const darkTheme = useAppSelector((state) => state.theme.darkTheme);
     const dispatch = useAppDispatch();
     useEffect(() => {
-        const userData = localStorage.getItem("userData");
+        const userData = localStorage.getItem("user");
         if (userData) {
             dispatch(restoreLogin(JSON.parse(userData)));
         }
