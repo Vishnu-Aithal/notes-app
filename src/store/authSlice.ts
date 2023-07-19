@@ -28,7 +28,10 @@ export const logInAction = createAsyncThunk<
     thunkApiConfig
 >("auth/logIn", async (body, thunkAPI) => {
     try {
-        const response = await axios.post("/api/auth/login", body);
+        const response = await axios.post(
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/auth/login`,
+            body
+        );
         const data = response.data;
         localStorage.setItem(
             "userData",
@@ -54,7 +57,10 @@ export const signUpAction = createAsyncThunk<
     thunkApiConfig
 >("auth/signup", async (body, thunkAPI) => {
     try {
-        const { data } = await axios.post("/api/auth/signup", { ...body });
+        const { data } = await axios.post(
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/auth/signup`,
+            { ...body }
+        );
         toast.success("Sign Up Succes!");
         return { userId: data.createdUser._id, token: data.encodedToken };
     } catch (error: any) {

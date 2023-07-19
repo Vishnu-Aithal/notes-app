@@ -33,13 +33,22 @@ export const getAllNotes = createAsyncThunk<
         const config = getConfig(thunkApi);
         const {
             data: { notes },
-        } = await axios.get("/api/notes", config);
+        } = await axios.get(
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/notes`,
+            config
+        );
         const {
             data: { archives },
-        } = await axios.get("/api/archives", config);
+        } = await axios.get(
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/archives`,
+            config
+        );
         const {
             data: { trash },
-        } = await axios.get("/api/trash", config);
+        } = await axios.get(
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/trash`,
+            config
+        );
         notes.length
             ? toast.success("Notes Fetched Successfully")
             : toast.info("No Notes");
@@ -61,7 +70,7 @@ export const addNewNote = createAsyncThunk<
 >("allNotes/addNewNote", async (noteDetails, thunkApi) => {
     try {
         const response = await axios.post(
-            "/api/notes",
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/notes`,
             { note: noteDetails },
             getConfig(thunkApi)
         );
@@ -85,7 +94,7 @@ export const updateNote = createAsyncThunk<
 >("allNotes/updateNote", async (noteDetails, thunkApi) => {
     try {
         const response = await axios.post(
-            `/api/notes/${noteDetails._id}`,
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/notes/${noteDetails._id}`,
             { note: noteDetails },
             getConfig(thunkApi)
         );
@@ -109,7 +118,7 @@ export const addToArchives = createAsyncThunk<
 >("allNotes/addToArchives", async (noteDetails, thunkApi) => {
     try {
         const response = await axios.post(
-            `/api/notes/archives/${noteDetails._id}`,
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/notes/archives/${noteDetails._id}`,
             { note: noteDetails },
             getConfig(thunkApi)
         );
@@ -132,7 +141,7 @@ export const restoreFromArchive = createAsyncThunk<
 >("allNotes/restoreFromArchive", async (noteDetails, thunkApi) => {
     try {
         const response = await axios.post(
-            `/api/archives/restore/${noteDetails._id}`,
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/archives/restore/${noteDetails._id}`,
             { note: noteDetails },
             getConfig(thunkApi)
         );
@@ -155,7 +164,7 @@ export const deleteFromArchive = createAsyncThunk<
 >("allNotes/deleteFromArchive", async (noteDetails, thunkApi) => {
     try {
         const response = await axios.delete(
-            `/api/archives/delete/${noteDetails._id}`,
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/archives/delete/${noteDetails._id}`,
 
             getConfig(thunkApi)
         );
@@ -178,7 +187,7 @@ export const addToTrash = createAsyncThunk<
 >("allNotes/addToTrash", async (noteDetails, thunkApi) => {
     try {
         const response = await axios.post(
-            `/api/notes/trash/${noteDetails._id}`,
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/notes/trash/${noteDetails._id}`,
             { note: noteDetails },
             getConfig(thunkApi)
         );
@@ -201,7 +210,7 @@ export const restoreFromTrash = createAsyncThunk<
 >("allNotes/restoreFromTrash", async (noteDetails, thunkApi) => {
     try {
         const response = await axios.post(
-            `/api/trash/restore/${noteDetails._id}`,
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/trash/restore/${noteDetails._id}`,
             { note: noteDetails },
             getConfig(thunkApi)
         );
@@ -224,7 +233,7 @@ export const deleteFromTrash = createAsyncThunk<
 >("allNotes/deleteFromTrash", async (noteDetails, thunkApi) => {
     try {
         const response = await axios.delete(
-            `/api/trash/delete/${noteDetails._id}`,
+            `https://${process.env.REACT_APP_BACKEND_URL}/api/trash/delete/${noteDetails._id}`,
 
             getConfig(thunkApi)
         );
